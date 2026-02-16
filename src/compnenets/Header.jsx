@@ -72,9 +72,10 @@ export const Header = () => {
         <div className="hidden lg:block shrink-0">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-gray-200"
+            className="inline-flex items-center gap-2 rounded-full border-1 border-white bg-black px-5 py-2.5 text-sm font-normal text-white transition-colors hover:bg-white hover:text-black hover:border-black"
           >
-            Contact Now
+           
+            Contact Now <Phone className="h-5 w-5 shrink-0 stroke-[1]" />
           </a>
         </div>
 

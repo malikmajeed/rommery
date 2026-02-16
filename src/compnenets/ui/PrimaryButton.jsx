@@ -1,9 +1,10 @@
 import React from "react";
 
-export const PrimaryButton = ({ label, icon, className = "" }) => {
+export const PrimaryButton = ({ label, icon, className = "", ...rest }) => {
   return (
     <button
       type="button"
+      {...rest}
       className={`
         group relative flex items-center justify-center gap-2 
         px-6 py-3 rounded-full border-2 border-black
