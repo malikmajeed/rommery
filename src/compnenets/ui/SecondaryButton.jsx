@@ -19,7 +19,7 @@ export const SecondaryButton = ({ label, icon, className = "" }) => {
 
       {icon &&
         React.cloneElement(icon, {
-          className: `w-5 h-5 flex-shrink-0 stroke-current transition-all duration-300 ${icon.props?.className ?? ""}`.trim(),
+          className: `w-5 h-5 flex-shrink-0 stroke-current transition-all duration-300 -rotate-45 group-hover:rotate-0 ${icon.props?.className ?? ""}`.trim(),
           strokeWidth: 2,
         })}
     </button>
