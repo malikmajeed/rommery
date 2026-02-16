@@ -12,11 +12,13 @@ export default function HeroSection() {
 
           {/* LEFT CONTENT */}
           <div>
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Smart Digital Solutions for Hotels & Apartments
+            <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight">
+              <span className="font-light text-2xl">Digital Solutions for Hotels & Apartments</span>
+              <br />
+              <span className="font-bold"> Experience Seamless Automation</span>
             </h1>
 
-            <p className="font-body mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 max-w-xl">
+            <p className="font-body mt-4 sm:mt-6 text-sm/6 text-gray-600 max-w-xl">
               Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
             </p>
 
@@ -80,6 +82,28 @@ export default function HeroSection() {
           </div>
 
 
+        </div>
+
+        {/* Stats section */}
+        <div className="mt-16 sm:mt-20 rounded-2xl bg-black py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+            <div>
+              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">500+</p>
+              <p className="mt-1 text-sm/6 text-gray-300">Hotels Worldwide</p>
+            </div>
+            <div>
+              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">98%</p>
+              <p className="mt-1 text-sm/6 text-gray-300">Guest Satisfaction</p>
+            </div>
+            <div>
+              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">60%</p>
+              <p className="mt-1 text-sm/6 text-gray-300">Faster Check-In</p>
+            </div>
+            <div>
+              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">24/7</p>
+              <p className="mt-1 text-sm/6 text-gray-300">Support Available</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
