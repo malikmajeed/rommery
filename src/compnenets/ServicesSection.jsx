@@ -45,23 +45,23 @@ const cardVariants = {
 };
 
 const ServicesSection = () => (
-  <section id="services" className="py-16 bg-background">
-    <div className="container mx-auto px-6">
+  <section id="services" className="py-10 sm:py-16 bg-background">
+    <div className="container mx-auto px-4 sm:px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-10 sm:mb-16"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-3">
           Everything You Need to Go Digital
         </h2>
-        <p className="text-sm/6 text-muted-foreground mt-4 max-w-xl mx-auto">
+        <p className="text-sm/6 text-muted-foreground mt-4 max-w-xl mx-auto px-1">
           Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.slice(0, 3).map((service, i) => (
           <motion.div
             key={service.title}
@@ -108,8 +108,8 @@ const ServicesSection = () => (
       </div>
 
 
-      <div className="grid grid-cols-3 mt-10 gap-6">
-        <div className="col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-10 gap-6">
+        <div className="w-full lg:col-span-1">
           {services[3] && (() => {
             const Icon4 = services[3].icon; // Uppercase variable
             return (
@@ -159,7 +159,7 @@ const ServicesSection = () => (
         </div>
 
           {/* SMART PMS CARD */}
-        <div className="col-span-2 rounded-2xl relative min-h-[320px] overflow-hidden border border-border bg-transparent">
+        <div className="w-full lg:col-span-2 rounded-2xl relative min-h-[280px] sm:min-h-[320px] overflow-hidden border border-border bg-transparent">
           {/* Image as background */}
           <div className="absolute inset-0 z-0">
             <img
@@ -172,14 +172,14 @@ const ServicesSection = () => (
           {/* Dark overlay */}
           <div className="absolute inset-0 z-[1] bg-black/80" aria-hidden />
           {/* Content above image - absolute inset-0 so it fills card and justify-center works */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-6 sm:p-8">
-            <h3 className="text-xl font-medium tracking-tight text-white mb-3 max-w-md">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8">
+            <h3 className="text-lg sm:text-xl font-medium tracking-tight text-white mb-2 sm:mb-3 max-w-md">
               Complete PMS Solution
             </h3>
-            <p className="text-sm/6 text-gray-300 mb-4 max-w-md">
+            <p className="text-xs sm:text-sm/6 text-gray-300 mb-3 sm:mb-4 max-w-md">
               Automate your entire hospitality operation with customized smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
             </p>
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 mb-5 text-sm/6 text-gray-300">
+            <ul className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 mb-4 sm:mb-5 text-xs sm:text-sm/6 text-gray-300">
               <li className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-white shrink-0" strokeWidth={2.5} />
                 Smart lock integration
@@ -207,7 +207,7 @@ const ServicesSection = () => (
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex flex-wrap justify-center gap-4 mt-12"
+        className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
       >
         {[
           { icon: Cloud, label: "Cloud based" },

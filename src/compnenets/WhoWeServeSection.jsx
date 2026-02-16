@@ -57,8 +57,8 @@ export const WhoWeServeSection = () => {
             <p class="mt-2 text-xl font-medium tracking-tight text-gray-950 max-lg:text-center">Hotel Chains & Resorts</p>
             <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Enterprise-grade hospitality automation that scales across all your properties. Centralized management, consistent guest experience, and powerful operational analytics.</p>
           </div>
-          <div className="relative min-h-0 w-full grow">
-            <div className="absolute top-10 right-0 bottom-0 left-10 overflow-hidden rounded-tl-xl  shadow-2xl outline outline-white/10">
+          <div className="relative min-h-[220px] sm:min-h-[280px] w-full grow">
+            <div className="absolute inset-0 sm:top-10 sm:right-0 sm:bottom-0 sm:left-10 overflow-hidden rounded-tl-xl shadow-2xl outline outline-white/10">
               <img
                 className="h-full w-full object-cover"
                 src="https://static.tildacdn.com/tild3961-6430-4334-b438-376231626333/StRegis_Muscat.jpg"

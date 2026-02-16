@@ -35,9 +35,7 @@ const HowItWorkSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider mb-4">
-            How It Works
-          </span>
+          
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Four Steps to Full Automation
           </h2>
