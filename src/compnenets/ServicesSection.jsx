@@ -55,7 +55,7 @@ const ServicesSection = () => (
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3">
           Everything You Need to Go Digital
         </h2>
-        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+        <p className="text-sm/6 text-muted-foreground mt-4 max-w-xl mx-auto">
           Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
         </p>
       </motion.div>
@@ -77,14 +77,14 @@ const ServicesSection = () => (
               <service.icon className="w-6 h-6 text-foreground" strokeWidth={1.75} />
             </div>
 
-            <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
+            <h3 className="text-xl font-medium tracking-tight text-foreground mb-2">{service.title}</h3>
+            <p className="text-sm/6 text-muted-foreground mb-4">{service.description}</p>
 
             <ul className="space-y-2 mb-5">
               {service.features.map((f) => (
                 <li key={f} className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" strokeWidth={2.5} />
-                  <span className="text-sm text-muted-foreground">{f}</span>
+                  <span className="text-sm/6 text-muted-foreground">{f}</span>
                 </li>
               ))}
             </ul>

@@ -4,7 +4,7 @@ export const WhoWeServeSection = () => {
   return (
     <div class="bg-gray-50 py-24 sm:py-32">
   <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-center text-base/7 font-semibold text-indigo-600">Who we serve</h2>
+
     <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl">Designed for Every Type of Property</p>
     <p class="mx-auto mt-3 max-w-2xl text-center text-gray-600">From independent hotels to large hospitality groups, our automation solutions adapt to your property size and operational model.</p>
     <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
@@ -45,7 +45,7 @@ export const WhoWeServeSection = () => {
             <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">Perfect for short and long stays. Enable digital check-in, mobile key access, and automated guest management for a seamless resident experience.</p>
           </div>
           <div class=" px-5 pt-10">
-            <img className='rounded-t-xl w-full  h-auto object-cover' src="https://images.squarespace-cdn.com/content/v1/6313226a88427102e3185a6d/1667057085115-WF2K79ONABIUVXY5BJUP/Two+MacDonnell+Road+Apartment+1.jpg" alt="" class="h-[min(152px,40cqw)] object-cover" />
+            <img className='rounded-t-xl w-full  h-auto' src="https://images.squarespace-cdn.com/content/v1/6313226a88427102e3185a6d/1667057085115-WF2K79ONABIUVXY5BJUP/Two+MacDonnell+Road+Apartment+1.jpg" alt="" class="h-[min(152px,40cqw)] object-cover" />
           </div>
         </div>
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-black/5"></div>

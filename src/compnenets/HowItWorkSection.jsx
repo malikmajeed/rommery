@@ -41,7 +41,7 @@ const HowItWorkSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Four Steps to Full Automation
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+          <p className="text-sm/6 text-muted-foreground mt-4 max-w-lg mx-auto">
             A fully automated guest experience from booking to check-out.
           </p>
         </motion.div>
@@ -96,10 +96,10 @@ const HowItWorkSection = () => {
                   <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/15 uppercase tracking-wider">
                     Step {i + 1}
                   </span>
-                  <h3 className="text-lg font-bold text-foreground mt-1.5 mb-1">
+                  <h3 className="text-xl font-medium tracking-tight text-foreground mt-1.5 mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm/6 text-muted-foreground">
                     {step.desc}
                   </p>
                 </div>
