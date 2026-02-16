@@ -1,6 +1,7 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { Smartphone, Lock, Monitor, Check } from "lucide-react";
+import { Smartphone, Lock, Monitor, Check, SmartphoneIcon, Cloud, Headphones, RefreshCw } from "lucide-react";
 
 const services = [
   {
@@ -24,6 +25,13 @@ const services = [
     features: ["Passport/ID scanning", "Payment processing", "Key or access code issuance", "PMS synchronization"],
     benefits: ["No front desk queues", "24/7 automated reception", "Ideal for apartments and budget hotels"],
   },
+  {
+    icon: SmartphoneIcon,
+    title: "Mobile Key System",
+    description: "Secure smartphone-based room access using encrypted keys that work seamlessly with your smart lock.",
+    features: ["Seamless integration with smart locks", "Encrypted mobile keys", "Real-time access management", "Guest-friendly app for check-in and check-out"],
+    benefits: ["No physical key cards", "Convenient access for guests", "Remote key sharing"],
+  },
 ];
 
 const cardVariants = {
@@ -36,7 +44,7 @@ const cardVariants = {
 };
 
 const ServicesSection = () => (
-  <section id="services" className="py-10 bg-background">
+  <section id="services" className="py-16 bg-background">
     <div className="container mx-auto px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -44,16 +52,15 @@ const ServicesSection = () => (
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mt-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3">
           Everything You Need to Go Digital
         </h2>
-        <p className="text-gray-600 mt-4 max-w-xl mx-auto">
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
           Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -62,34 +69,33 @@ const ServicesSection = () => (
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="group relative bg-white rounded-2xl border border-gray-200/80 p-8 shadow-sm hover:shadow-xl hover:shadow-black/5 hover:border-black transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+            className="group relative bg-card rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl hover:shadow-foreground/5 hover:border-foreground transition-all duration-300 hover:-translate-y-1 overflow-hidden"
           >
-            {/* Subtle top accent line on hover */}
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-black to-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="absolute inset-x-0 top-0 h-1 bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-            <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 group-hover:bg-gray-200 transition-colors duration-300 ring-2 ring-gray-200 group-hover:ring-gray-300">
-              <service.icon className="w-7 h-7 text-gray-900" strokeWidth={1.75} />
+            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300 ring-2 ring-border group-hover:ring-ring">
+              <service.icon className="w-6 h-6 text-foreground" strokeWidth={1.75} />
             </div>
 
-            <h3 className="font-heading text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-            <p className="font-body text-gray-600 text-sm leading-relaxed mb-5">{service.description}</p>
+            <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
 
-            <ul className="space-y-2.5 mb-6">
+            <ul className="space-y-2 mb-5">
               {service.features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-gray-900 mt-0.5 shrink-0" strokeWidth={2.5} />
-                  <span className="text-sm text-gray-700">{f}</span>
+                <li key={f} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" strokeWidth={2.5} />
+                  <span className="text-sm text-muted-foreground">{f}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="pt-5 border-t border-gray-100">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Key Benefits</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="pt-4 border-t border-border">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Key Benefits</p>
+              <div className="flex flex-wrap gap-1.5">
                 {service.benefits.map((b) => (
                   <span
                     key={b}
-                    className="text-xs bg-gray-100 text-gray-800 rounded-full px-3 py-1.5 font-medium border border-gray-200"
+                    className="text-xs bg-secondary text-secondary-foreground rounded-full px-2.5 py-1 font-medium border border-border"
                   >
                     {b}
                   </span>
@@ -99,6 +105,28 @@ const ServicesSection = () => (
           </motion.div>
         ))}
       </div>
+
+      {/* Badges row */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="flex flex-wrap justify-center gap-4 mt-12"
+      >
+        {[
+          { icon: Cloud, label: "Cloud based" },
+          { icon: Headphones, label: "24/7 support" },
+          { icon: RefreshCw, label: "Regular updated" },
+        ].map(({ icon: Icon, label }) => (
+          <span
+            key={label}
+            className="inline-flex items-center gap-2 rounded-full bg-secondary border border-border px-4 py-2 text-sm font-medium text-foreground"
+          >
+            <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
+            {label}
+          </span>
+        ))}
+      </motion.div>
     </div>
   </section>
 );
