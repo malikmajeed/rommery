@@ -49,7 +49,7 @@ export const WhoWeServeSection = () => {
               </div>
               <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
                 <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-2xl shadow-2xl">
-                  <img src="https://www.travelandleisure.com/thmb/fRvEyHLh-a92ZNKiIjZ9xf8r1tM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-the-william-vale-BOUTIQUENYC0624-2f7c7e43191544e79d78b1e813e1d2c9.jpg" alt="" className="size-full object-cover object-top" />
+                  <img src="https://www.triparound.com/wp-content/uploads/2021/11/pexels-photo-1488327.jpg" alt="" className="size-full object-cover object-top" />
                 </div>
               </div>
             </div>

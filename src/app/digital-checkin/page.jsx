@@ -123,7 +123,7 @@ export default function DigitalCheckInPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+      <div className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 sm:mb-14">
           
@@ -146,7 +146,7 @@ export default function DigitalCheckInPage() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

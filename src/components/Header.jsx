@@ -21,7 +21,7 @@ export const Header = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - left */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <span className="text-xl font-bold tracking-tight">Rommery</span>
+          <img src="./remmery-logo.png" alt="Rommery" className=" h-10" />
         </Link>
 
         {/* Desktop: center nav */}
@@ -44,15 +44,24 @@ export const Header = () => {
             </button>
             {servicesOpen && (
               <div className="absolute left-0 top-full pt-1">
-                <div className="min-w-[220px] rounded-xl border border-white/20 bg-white/10 backdrop-blur-xl py-1 shadow-xl">
+                <div
+                  className="min-w-[220px] rounded-2xl py-1 shadow-2xl"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.72)',
+                    backdropFilter: 'saturate(180%) blur(20px)',
+                    WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+                    border: '1px solid rgba(255, 255, 255, 0.45)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 1px 0 rgba(255, 255, 255, 0.5) inset',
+                  }}
+                >
                   {servicesLinks.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-primary-foreground/90 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-black/5 rounded-lg mx-1 transition-colors"
                       onClick={() => setServicesOpen(false)}
                     >
-                      <Check className="h-3.5 w-3.5 shrink-0 text-primary-foreground/70" strokeWidth={2.5} />
+                      <Check className="h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={2.5} />
                       {item.label}
                     </Link>
                   ))}
