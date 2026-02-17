@@ -26,8 +26,8 @@ const steps = [
 ];
 const HowItWorkSection = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-6">
+    <section id="how-it-works" className="relative py-24 bg-secondary/40 gradient-dots-subtle">
+      <div className="relative container mx-auto px-6">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

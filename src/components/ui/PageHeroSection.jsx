@@ -91,8 +91,9 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
   }
 
   return (
-    <section className="border-b border-border bg-background py-4 sm:py-6 md:py-8 flex items-center justify-center">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full">
+    <section className="relative border-b border-border gradient-brand py-4 sm:py-6 md:py-8 flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 gradient-dots-subtle opacity-60 pointer-events-none" aria-hidden />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full [&_.text-foreground]:!text-primary-foreground [&_.text-muted-foreground]:!text-primary-foreground/90 [&_a]:text-primary-foreground [&_a:hover]:text-white">
         {content}
       </div>
     </section>

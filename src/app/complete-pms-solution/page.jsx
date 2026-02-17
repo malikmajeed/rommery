@@ -17,8 +17,8 @@ import {
   TestTube,
   Zap,
 } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+
+const HERO_IMAGE ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIpwS-RqARuMkdZUmLiLT01ucwPXr20Ohuw&s';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
 
 const platforms = [
@@ -116,16 +116,16 @@ function StepIcon({ icon: Icon, className, strokeWidth }) {
 export default function CompletePMSSolutionPage() {
   return (
     <div>
-      <Header />
       <PageHeroSection
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Complete PMS Solution' }]}
         title="Complete PMS Solution"
+        image={HERO_IMAGE}
         description="Connect seamlessly with your existing property management system. Integrates with all major PMS platforms to create a unified digital ecosystem."
       />
 
       {/* Supported Platforms */}
-      <section className="py-16 sm:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 flex items-center gap-4"
+                className="rounded-2xl glass-card p-6 transition-all duration-300 flex items-center gap-4"
               >
                 <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <StepIcon icon={p.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -166,8 +166,8 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Data Sync */}
-      <section className="py-16 sm:py-24 bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +192,7 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -215,8 +215,8 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Integration Benefits */}
-      <section className="py-16 sm:py-24 bg-background border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,7 +241,7 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -270,8 +270,8 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Quick & Easy Implementation - 4 steps */}
-      <section className="py-16 sm:py-24 bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -292,7 +292,7 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/15 transition-all duration-300 text-center"
+                className="rounded-2xl glass-card p-6 transition-all duration-300 text-center"
               >
                 <div className="w-14 h-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-3 text-xl font-bold">
                   {step.number}
@@ -307,8 +307,6 @@ export default function CompletePMSSolutionPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

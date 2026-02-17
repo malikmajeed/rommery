@@ -11,8 +11,8 @@ import {
   Percent,
   Cog,
 } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+
+const HERO_IMAGE ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdDgYciWcwWH05NgsVE8a3wOBP4tq7HRXzAw&s';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
 
 const pricingIntelligence = [
@@ -115,16 +115,16 @@ function StepIcon({ icon: Icon, className, strokeWidth }) {
 export default function SmartPricingEnginePage() {
   return (
     <div>
-      <Header />
       <PageHeroSection
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Smart Pricing Engine' }]}
         title="Smart Pricing Engine"
+        image={HERO_IMAGE}
         description="AI-powered dynamic pricing to maximize revenue and occupancy. Automatically adjust room rates based on demand, competition, and market conditions in real-time."
       />
 
       {/* Pricing Intelligence */}
-      <section className="py-16 sm:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ export default function SmartPricingEnginePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -170,8 +170,8 @@ export default function SmartPricingEnginePage() {
       </section>
 
       {/* Strategies */}
-      <section className="py-16 sm:py-24 bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -196,7 +196,7 @@ export default function SmartPricingEnginePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/15 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <Lightbulb className="w-5 h-5 text-primary shrink-0" strokeWidth={1.75} />
@@ -228,8 +228,8 @@ export default function SmartPricingEnginePage() {
       </section>
 
       {/* Revenue Impact */}
-      <section className="py-16 sm:py-24 bg-background border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ export default function SmartPricingEnginePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300 text-center"
+                className="rounded-2xl glass-card p-6 transition-all duration-300 text-center"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -266,8 +266,6 @@ export default function SmartPricingEnginePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

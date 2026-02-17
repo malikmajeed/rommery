@@ -7,11 +7,11 @@ export const SecondaryButton = ({ label, icon, className = "" }) => {
       type="button"
       className={`
         group relative flex items-center justify-center gap-2
-        px-6 py-3 rounded-full border-2 border-black
-        bg-white text-black font-medium
+        px-6 py-3 rounded-full border-2 border-primary
+        bg-background text-foreground font-medium
         shadow-sm hover:shadow-md
         transition-all duration-300
-        hover:bg-black hover:text-white
+        hover:bg-primary hover:text-primary-foreground
         ${className}
       `}
     >

@@ -7,11 +7,11 @@ export const PrimaryButton = ({ label, icon, className = "", ...rest }) => {
       {...rest}
       className={`
         group relative flex items-center justify-center gap-2 
-        px-6 py-3 rounded-full border-2 border-black
-        bg-black text-white font-medium
+        px-6 py-3 rounded-full border-2 border-primary
+        bg-primary text-primary-foreground font-medium
         shadow-md hover:shadow-lg
         transition-all duration-300
-        hover:bg-white hover:text-black
+        hover:bg-accent hover:text-accent-foreground hover:border-accent
         ${className}
       `}
     >

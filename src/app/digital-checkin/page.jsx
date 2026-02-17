@@ -64,7 +64,7 @@ function StepCard({ step, index }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/15 transition-all duration-300"
+      className="rounded-2xl glass-card p-6 transition-all duration-300"
     >
       <div className="flex items-start gap-4">
         <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
@@ -101,8 +101,8 @@ export default function DigitalCheckInPage() {
       />
 
       {/* Process Section */}
-      <section className="py-16 sm:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 sm:mb-14">
            
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">Complete Check-In Process</h2>
@@ -123,8 +123,8 @@ export default function DigitalCheckInPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 sm:py-24 bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 sm:mb-14">
           
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">Key Benefits</h2>
@@ -134,7 +134,7 @@ export default function DigitalCheckInPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, i) => (
               <motion.div key={benefit.title} custom={i} variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={benefit.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />

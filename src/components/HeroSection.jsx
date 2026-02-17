@@ -9,7 +9,7 @@ import { ArrowRight, Play } from 'lucide-react';
 export default function HeroSection() {
   return (
     <div className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-10 md:py-20 lg:py-10 ">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
 
@@ -19,19 +19,19 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 leading-tight">
+            <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
               <span className="font-light text-2xl">Digital Solutions for Hotels & Apartments</span>
               <br />
-              <span className="font-bold"> Experience Seamless Automation</span>
+              <span className="font-bold text-primary"> Experience Seamless Automation</span>
             </h1>
 
-            <p className="font-body mt-4 sm:mt-6 text-sm/6 text-gray-600 max-w-xl">
+            <p className="font-body mt-4 sm:mt-6 text-sm/6 text-muted-foreground max-w-xl">
               Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
                           <PrimaryButton label="Get started" icon={<ArrowRight />} />
-                          <SecondaryButton label="Live demo" icon={<Play />} className="border-none hover:bg-white hover:!text-black" />
+                          <SecondaryButton label="Live demo" icon={<Play />} className="border border-primary hover:bg-accent hover:text-accent-foreground" />
                       </div>
 
           </motion.div>
@@ -102,7 +102,7 @@ export default function HeroSection() {
             </div>
 
             {/* Soft Gradient Background */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-purple-100 via-white to-indigo-100 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-50" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-primary/10 via-background to-accent/20 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-60" />
           </motion.div>
         </div>
 
@@ -112,7 +112,7 @@ export default function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 sm:mt-20 rounded-2xl bg-black py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
+          className="mt-16 sm:mt-20 rounded-2xl bg-primary py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             <motion.div
@@ -121,8 +121,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">500+</p>
-              <p className="mt-1 text-sm/6 text-gray-300">Hotels Worldwide</p>
+              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">500+</p>
+              <p className="mt-1 text-sm/6 text-primary-foreground/80">Hotels Worldwide</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -130,8 +130,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">98%</p>
-              <p className="mt-1 text-sm/6 text-gray-300">Guest Satisfaction</p>
+              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">98%</p>
+              <p className="mt-1 text-sm/6 text-primary-foreground/80">Guest Satisfaction</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -139,8 +139,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">60%</p>
-              <p className="mt-1 text-sm/6 text-gray-300">Faster Check-In</p>
+              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">60%</p>
+              <p className="mt-1 text-sm/6 text-primary-foreground/80">Faster Check-In</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -148,8 +148,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white tracking-tight">24/7</p>
-              <p className="mt-1 text-sm/6 text-gray-300">Support Available</p>
+              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">24/7</p>
+              <p className="mt-1 text-sm/6 text-primary-foreground/80">Support Available</p>
             </motion.div>
           </div>
         </motion.div>

@@ -12,8 +12,9 @@ import {
   CalendarClock,
   Check,
 } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+
+
+const HERO_IMAGE ='https://tapkey.com/wp-content/uploads/2023/07/Blog-New-_1_-1.webp';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
 
 const steps = [
@@ -107,16 +108,16 @@ function StepIcon({ icon: Icon, className, strokeWidth }) {
 export default function MobileKeySystemPage() {
   return (
     <div>
-      <Header />
       <PageHeroSection
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Mobile Key System' }]}
+        image={HERO_IMAGE}
         title="Mobile Key System"
         description="Secure smartphone-based room access for ultimate convenience. Replace physical key cards with encrypted mobile keys that work seamlessly with your existing smart lock infrastructure."
       />
 
       {/* How It Works */}
-      <section className="py-16 sm:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +142,7 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/15 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
@@ -169,7 +170,7 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/15 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
@@ -192,8 +193,8 @@ export default function MobileKeySystemPage() {
       </section>
 
       {/* Features */}
-      <section className="py-16 sm:py-24 bg-secondary/30 border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +219,7 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+                className="rounded-2xl glass-card p-6 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={feature.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
@@ -242,8 +243,8 @@ export default function MobileKeySystemPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-16 sm:py-24 bg-background border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-border gradient-dots-subtle">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -284,8 +285,6 @@ export default function MobileKeySystemPage() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

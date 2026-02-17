@@ -45,8 +45,8 @@ const cardVariants = {
 };
 
 const ServicesSection = () => (
-  <section id="services" className="py-10 sm:py-16 bg-background">
-    <div className="container mx-auto px-4 sm:px-6">
+  <section id="services" className="relative py-10 sm:py-16 bg-background gradient-dots-subtle">
+    <div className="relative container mx-auto px-4 sm:px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -70,9 +70,9 @@ const ServicesSection = () => (
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="group relative bg-card rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl hover:shadow-foreground/5 hover:border-foreground transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+            className="group relative glass-card p-6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
           >
-            <div className="absolute inset-x-0 top-0 h-1 bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="absolute inset-x-0 top-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />
 
             <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300 ring-2 ring-border group-hover:ring-ring">
               <service.icon className="w-6 h-6 text-foreground" strokeWidth={1.75} />
@@ -120,9 +120,9 @@ const ServicesSection = () => (
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="group relative bg-card rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl hover:shadow-foreground/5 hover:border-foreground transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                className="group relative glass-card p-6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />
 
                 <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300 ring-2 ring-border group-hover:ring-ring">
                   <Icon4 className="w-6 h-6 text-foreground" strokeWidth={1.75} />
@@ -170,16 +170,16 @@ const ServicesSection = () => (
             />
           </div>
           {/* Dark overlay */}
-          <div className="absolute inset-0 z-[1] bg-black/80" aria-hidden />
+          <div className="absolute inset-0 z-[1] bg-primary/90" aria-hidden />
           {/* Content above image - absolute inset-0 so it fills card and justify-center works */}
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8">
             <h3 className="text-lg sm:text-xl font-medium tracking-tight text-white mb-2 sm:mb-3 max-w-md">
               Complete PMS Solution
             </h3>
-            <p className="text-xs sm:text-sm/6 text-gray-300 mb-3 sm:mb-4 max-w-md">
+            <p className="text-xs sm:text-sm/6 text-primary-foreground/90 mb-3 sm:mb-4 max-w-md">
               Automate your entire hospitality operation with customized smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
             </p>
-            <ul className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 mb-4 sm:mb-5 text-xs sm:text-sm/6 text-gray-300">
+            <ul className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 mb-4 sm:mb-5 text-xs sm:text-sm/6 text-primary-foreground/90">
               <li className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-white shrink-0" strokeWidth={2.5} />
                 Smart lock integration
@@ -196,7 +196,7 @@ const ServicesSection = () => (
             <PrimaryButton
               label="Contact Now!"
               icon={<ArrowRight />}
-              className="!bg-white !text-black border-white hover:!bg-gray-100 hover:!text-black"
+              className="!bg-accent !text-accent-foreground border-accent hover:!bg-accent/90"
             />
           </div>
         </div>
