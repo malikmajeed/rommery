@@ -30,8 +30,8 @@ export default function HeroSection() {
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                          <PrimaryButton label="Get started" icon={<ArrowRight />} />
-                          <SecondaryButton label="Live demo" icon={<Play />} className="border border-primary hover:bg-accent hover:text-accent-foreground" />
+                          <PrimaryButton label="Get started" icon={<ArrowRight />} className="" />
+                          <SecondaryButton label="Live demo" icon={<Play />} className="" />
                       </div>
 
           </motion.div>

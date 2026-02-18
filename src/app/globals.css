@@ -2,17 +2,18 @@
 @config "../../tailwind.config.js";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a2e;
+  /* Dark theme - charcoal / dark grey */
+  --background: #1c1c1e;
+  --foreground: #f0f0f2;
   --primary: #4D97DD;
   --primary-foreground: #ffffff;
   --accent: #8FE5C1;
   --accent-foreground: #0f172a;
-  --secondary: #e8f7f2;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --card: #ffffff;
+  --secondary: #f9f9f9;
+  --muted: #252528;
+  --muted-foreground: #a1a1a6;  
+  --border: #3a3a3c;
+  --card: #252528;
   --font-heading: 'Poppins', sans-serif;
   --font-body: Arial;
 }
@@ -35,19 +36,32 @@
   --font-family-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --primary: #4D97DD;
-    --primary-foreground: #ffffff;
-    --accent: #8FE5C1;
-    --accent-foreground: #0f172a;
-    --secondary: #1e293b;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --card: #1e293b;
+    /* Keep charcoal dark background regardless of system preference */
+    --background: #1c1c1e;
+    --foreground: #f0f0f2;
+    --secondary: #2d2d30;
+    --muted: #252528;
+    --muted-foreground: #a1a1a6;
+    --border: #3a3a3c;
+    --card: #252528;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(77, 151, 221, 0.15);
+    box-shadow: 0 4px 24px rgba(77, 151, 221, 0.08);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(77, 151, 221, 0.3);
+    box-shadow: 0 8px 32px rgba(77, 151, 221, 0.12);
   }
 }
 
@@ -76,21 +90,21 @@ body {
   background-color: var(--background);
 }
 
-/* Subtle dot grid for section backgrounds */
+/* Subtle dot grid for section backgrounds (visible on dark) */
 .gradient-dots-subtle {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(77, 151, 221, 0.18) 0.5px, transparent 0),
-    radial-gradient(circle at 1px 1px, rgba(143, 229, 193, 0.18) 0.4px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(77, 151, 221, 0.25) 0.5px, transparent 0),
+    radial-gradient(circle at 1px 1px, rgba(143, 229, 193, 0.22) 0.4px, transparent 0);
   background-size: 28px 28px;
   background-position: 0 0, 14px 14px;
 }
 
-/* Glassmorphism */
+/* Glassmorphism (dark theme default) */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(37, 37, 40, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-dark {
@@ -101,14 +115,89 @@ body {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(37, 37, 40, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(77, 151, 221, 0.15);
-  box-shadow: 0 4px 24px rgba(77, 151, 221, 0.08);
+  border: 1px solid rgba(77, 151, 221, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .glass-card:hover {
-  border-color: rgba(77, 151, 221, 0.3);
-  box-shadow: 0 8px 32px rgba(77, 151, 221, 0.12);
+  border-color: rgba(77, 151, 221, 0.4);
+  box-shadow: 0 8px 32px rgba(77, 151, 221, 0.15);
+}
+
+/* Revolving theme border - Google style hover */
+
+
+/* Register animatable custom property */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Animated snake border */
+.btn-revolving-border {
+  --border-radius: 9999px;
+  --border-width: 2px;
+  --angle: 0deg;
+
+  position: relative;
+  border: 0;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Allow Tailwind border utilities to show (they're overridden by border: 0 above) */
+.btn-revolving-border.border.border-white {
+  border: 1px solid rgb(255 255 255) !important;
+}
+
+.btn-revolving-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--border-width);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+
+  background: conic-gradient(
+    from var(--angle),
+    #00000000,
+    #4D97DD,
+    #ffffff,
+    #4D97DD,
+    #8FE5C1,
+    #4D97DD,
+    #00000000,
+    #00000000
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity 1.5s ease;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn-revolving-border:hover::after {
+  opacity: 1;
+  animation: snake 3s linear infinite;
+}
+
+@keyframes snake {
+  to {
+    --angle: 360deg;
+  }
 }
