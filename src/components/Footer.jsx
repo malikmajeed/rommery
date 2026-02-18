@@ -15,8 +15,16 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative gradient-brand-reverse text-primary-foreground shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
-      <div className="absolute inset-0 gradient-dots-subtle pointer-events-none" aria-hidden />
+    <footer
+      className="relative w-full text-neutral-800"
+      style={{
+        background: 'rgba(250, 250, 250, 0.85)',
+        backdropFilter: 'saturate(180%) blur(20px)',
+        WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+        borderTop: '1px solid rgba(0, 0, 0, 0.06)',
+        boxShadow: '0 -1px 0 rgba(255, 255, 255, 0.8) inset, 0 -4px 24px rgba(0, 0, 0, 0.06)',
+      }}
+    >
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-3 lg:gap-8">
           {/* Brand */}
@@ -27,10 +35,10 @@ export const Footer = () => {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="lg:col-span-1"
           >
-            <Link href="/" className="text-xl font-bold tracking-tight text-primary-foreground">
+            <Link href="/" className="text-xl font-bold tracking-tight text-neutral-900">
               Rommery
             </Link>
-            <p className="mt-3 text-sm text-primary-foreground/80 max-w-xs">
+            <p className="mt-3 text-sm text-neutral-600 max-w-xs">
               Smart digital solutions for hotels and apartments. Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
             </p>
           </motion.div>
@@ -42,7 +50,7 @@ export const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/90">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-800">
               Services
             </h3>
             <ul className="mt-4 space-y-2">
@@ -50,7 +58,7 @@ export const Footer = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                    className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -66,27 +74,27 @@ export const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.4 }}
           >
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/90">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-800">
               Who We Serve
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="#who-we-serve" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                   Boutique Hotels
                 </Link>
               </li>
               <li>
-                <Link href="#who-we-serve" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                   Vacation Rentals
                 </Link>
               </li>
               <li>
-                <Link href="#who-we-serve" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                   Serviced Apartments
                 </Link>
               </li>
               <li>
-                <Link href="#who-we-serve" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
                   Hotel Chains & Resorts
                 </Link>
               </li>
@@ -100,9 +108,9 @@ export const Footer = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="mt-12 border-t border-primary-foreground/10 pt-8 sm:mt-16 sm:pt-10"
+          className="mt-12 border-t border-neutral-200 pt-8 sm:mt-16 sm:pt-10"
         >
-          <p className="text-center text-sm text-primary-foreground/70">
+          <p className="text-center text-sm text-neutral-500">
             © {currentYear} Rommery. All rights reserved.
           </p>
         </motion.div>

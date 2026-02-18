@@ -21,7 +21,7 @@ export const Header = () => {
     <header
       className="sticky top-0 z-50 w-full text-neutral-800 shadow-lg"
       style={{
-        background: 'rgba(250, 250, 250, 0.85)',
+        background: 'rgba(250, 250, 250, 0.32)',
         backdropFilter: 'saturate(180%) blur(20px)',
         WebkitBackdropFilter: 'saturate(180%) blur(20px)',
         borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
@@ -38,7 +38,7 @@ export const Header = () => {
         <nav className="hidden lg:flex lg:items-center lg:gap-1 xl:gap-2">
           <Link
             href="/"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
+            className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             Home
           </Link>
@@ -47,7 +47,7 @@ export const Header = () => {
               type="button"
               onClick={() => setServicesOpen((v) => !v)}
               onBlur={() => setTimeout(() => setServicesOpen(false), 150)}
-              className="flex items-center gap-0.5 rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
+              className="flex items-center gap-0.5 rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
             >
               Services
               <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
@@ -81,7 +81,7 @@ export const Header = () => {
           </div>
           <Link
             href="#about"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
+            className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             About Us
           </Link>
@@ -89,7 +89,7 @@ export const Header = () => {
             href="https://crito.io/"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
+            className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             Hardware
           </a>
