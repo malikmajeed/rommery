@@ -1,12 +1,62 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { PrimaryButton } from './ui/PrimaryButton';
 import { SecondaryButton } from './ui/SecondaryButton';
 import { ArrowRight, Play } from 'lucide-react';
 
+// Ease-out curve: fast start, slow end
+function easeOutCubic(t) {
+  return 1 - (1 - t) ** 3;
+}
+
+function StatCounter({ end, suffix = '', duration = 1.5, delay = 0, inView }) {
+  const [display, setDisplay] = useState(0);
+  const hasStarted = useRef(false);
+
+  useEffect(() => {
+    if (!inView || hasStarted.current) return;
+    hasStarted.current = true;
+
+    const startTime = performance.now();
+    const delayMs = delay * 1000;
+    const durationMs = duration * 1000;
+    let rafId;
+
+    const tick = (now) => {
+      const elapsed = now - startTime - delayMs;
+      if (elapsed < 0) {
+        rafId = requestAnimationFrame(tick);
+        return;
+      }
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = easeOutCubic(progress);
+      const value = eased * end;
+      setDisplay(Math.round(value));
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        setDisplay(end);
+      }
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [inView, end, duration, delay]);
+
+  return (
+    <span>
+      {display}
+      {suffix}
+    </span>
+  );
+}
+
 export default function HeroSection() {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
+
   return (
     <div className="relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-10 md:py-20 lg:py-10 ">
@@ -20,17 +70,17 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
-              <span className="font-light text-2xl">Digital Solutions for Hotels & Apartments</span>
+              <span className="font-light text-black/80 text-2xl">Digital Solutions for Hotels & Apartments</span>
               <br />
               <span className="font-bold text-primary"> Experience Seamless Automation</span>
             </h1>
 
-            <p className="font-body mt-4 sm:mt-6 text-sm/6 text-muted-foreground max-w-xl">
+            <p className="font-body text-black/80 mt-4 sm:mt-6 text-md/6  max-w-2xl">
               Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                          <PrimaryButton label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-muted-foreground hover:from-muted-foreground hover:to-primary" />
+                          <PrimaryButton label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
                           <SecondaryButton label="Live demo" icon={<Play />} className="text-black" />
                       </div>
 
@@ -108,11 +158,12 @@ export default function HeroSection() {
 
         {/* Stats section */}
         <motion.div
+          ref={statsRef}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 sm:mt-20 rounded-2xl bg-primary py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
+          className="mt-16 sm:mt-20 rounded-2xl bg-gradient-to-r from-primary to-secondary py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             <motion.div
@@ -121,8 +172,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">500+</p>
-              <p className="mt-1 text-sm/6 text-primary-foreground/80">Hotels Worldwide</p>
+              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+                <StatCounter end={500} suffix="+" duration={1.5} delay={0.2} inView={statsInView} />
+              </p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">Hotels Worldwide</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -130,8 +183,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">98%</p>
-              <p className="mt-1 text-sm/6 text-primary-foreground/80">Guest Satisfaction</p>
+              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+                <StatCounter end={98} suffix="%" duration={1.2} delay={0.35} inView={statsInView} />
+              </p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">Guest Satisfaction</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -139,8 +194,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">60%</p>
-              <p className="mt-1 text-sm/6 text-primary-foreground/80">Faster Check-In</p>
+              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+                <StatCounter end={60} suffix="%" duration={1.2} delay={0.5} inView={statsInView} />
+              </p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">Faster Check-In</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -148,8 +205,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">24/7</p>
-              <p className="mt-1 text-sm/6 text-primary-foreground/80">Support Available</p>
+              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">24/7</p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">Support Available</p>
             </motion.div>
           </div>
         </motion.div>
