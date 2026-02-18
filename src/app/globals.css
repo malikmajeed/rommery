@@ -3,7 +3,7 @@
 
 :root {
   /* Dark theme - charcoal / dark grey */
-  --background: #1c1c1e;
+  --background: #FAF9F6;
   --foreground: #f0f0f2;
   --primary: #4D97DD;
   --primary-foreground: #ffffff;
@@ -39,7 +39,7 @@
 @media (prefers-color-scheme: light) {
   :root {
     /* Keep charcoal dark background regardless of system preference */
-    --background: #1c1c1e;
+    --background: #FAF9F6;
     --foreground: #f0f0f2;
     --secondary: #2d2d30;
     --muted: #252528;
@@ -144,7 +144,7 @@ body {
   --angle: 0deg;
 
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.141);
   box-sizing: border-box;
   z-index: 1;
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
