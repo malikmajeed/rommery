@@ -21,26 +21,26 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
         <nav aria-label="Breadcrumb" className={hasImage ? 'mb-3' : 'mb-2 w-full flex justify-center'}>
           <ol
             className={`flex flex-wrap items-center gap-1.5 text-sm ${
-              hasImage ? 'text-white/80' : 'text-muted-foreground'
+              hasImage ? 'text-white/80' : 'text-neutral-500'
             }`}
           >
             {breadcrumbs.map((item, i) => (
               <li key={i} className="flex items-center gap-1.5">
                 {i > 0 && (
                   <ChevronRight
-                    className={`h-4 w-4 shrink-0 ${hasImage ? '' : 'text-muted-foreground/70'}`}
+                    className={`h-4 w-4 shrink-0 ${hasImage ? '' : 'text-neutral-400'}`}
                     aria-hidden
                   />
                 )}
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className={hasImage ? 'hover:text-white transition-colors' : 'hover:text-foreground transition-colors'}
+                    className={hasImage ? 'hover:text-white transition-colors' : 'hover:text-primary transition-colors'}
                   >
                     {item.label}
                   </Link>
                 ) : (
-                  <span className={hasImage ? 'text-white font-medium' : 'text-foreground font-medium'}>
+                  <span className={hasImage ? 'text-white font-medium' : 'text-neutral-900 font-medium'}>
                     {item.label}
                   </span>
                 )}
@@ -53,7 +53,7 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
         className={`font-heading font-bold tracking-tight w-full ${
           hasImage
             ? 'text-3xl text-white sm:text-4xl md:text-5xl max-w-2xl'
-            : 'text-2xl text-foreground sm:text-3xl md:text-4xl'
+            : 'text-2xl text-primary sm:text-3xl md:text-4xl'
         }`}
       >
         {title}
@@ -63,7 +63,7 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
           className={
             hasImage
               ? 'mt-3 max-w-xl text-sm/6 text-white/90 sm:text-base'
-              : 'mt-2 max-w-2xl text-sm/6 text-muted-foreground sm:mt-2 w-full mx-auto'
+              : 'mt-2 max-w-2xl text-sm/6 text-neutral-600 sm:mt-2 w-full mx-auto'
           }
         >
           {description}
@@ -81,9 +81,9 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
             alt={imageAlt}
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-foreground/70" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/80" aria-hidden />
         </div>
-        <div className="relative z-10 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <div className="relative z-10 w-full  mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           {content}
         </div>
       </section>
@@ -91,9 +91,8 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
   }
 
   return (
-    <section className="relative border-b border-border gradient-brand py-4 sm:py-6 md:py-8 flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 gradient-dots-subtle opacity-60 pointer-events-none" aria-hidden />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full [&_.text-foreground]:!text-primary-foreground [&_.text-muted-foreground]:!text-primary-foreground/90 [&_a]:text-primary-foreground [&_a:hover]:text-white">
+    <section className="relative border-b border-neutral-200 bg-gradient-to-b from-primary/10 to-secondary/10 gradient-dots-subtle py-12 sm:py-16 flex items-center justify-center overflow-hidden">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full">
         {content}
       </div>
     </section>

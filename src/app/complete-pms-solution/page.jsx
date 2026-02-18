@@ -130,13 +130,12 @@ export default function CompletePMSSolutionPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-            
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Wide Range of PMS Systems
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-neutral-600">
               Seamless integration with all major property management systems
             </p>
           </motion.div>
@@ -150,13 +149,13 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300 flex items-center gap-4"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center gap-4"
               >
                 <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <StepIcon icon={p.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-heading text-lg font-semibold text-foreground">{p.name}</h3>
+                  <h3 className="font-heading text-lg font-semibold text-primary">{p.name}</h3>
                   <p className="text-sm text-primary font-medium">{p.status}</p>
                 </div>
               </motion.div>
@@ -166,19 +165,18 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Data Sync */}
-      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-neutral-200 gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-           
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Synchronized Data
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-neutral-600">
               Complete data flow between your PMS and platform
             </p>
           </motion.div>
@@ -192,17 +190,17 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-3">
                   {item.title}
                 </h3>
                 <ul className="space-y-1.5">
                   {item.points.map((point) => (
-                    <li key={point} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <li key={point} className="flex items-center gap-2 text-sm text-neutral-500">
                       <Check className="w-4 h-4 text-primary shrink-0" strokeWidth={2.5} />
                       {point}
                     </li>
@@ -215,19 +213,18 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Integration Benefits */}
-      <section className="relative py-16 sm:py-24 bg-background border-t border-border gradient-dots-subtle">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-neutral-200 gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-            
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Why Integration Matters
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-neutral-600">
               Streamlined operations through seamless system connectivity
             </p>
           </motion.div>
@@ -241,22 +238,22 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={item.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-1">
                   {item.title}
                 </h3>
-                <p className="text-sm font-medium text-foreground/90 mb-1">{item.subtitle}</p>
+                <p className="text-sm font-medium text-neutral-800 mb-1">{item.subtitle}</p>
                 {item.desc && (
-                  <p className="text-sm/6 text-muted-foreground">{item.desc}</p>
+                  <p className="text-sm/6 text-neutral-600">{item.desc}</p>
                 )}
                 {item.steps && (
                   <ul className="mt-3 space-y-1.5">
                     {item.steps.map((step) => (
-                      <li key={step} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <li key={step} className="flex items-start gap-2 text-sm text-neutral-500">
                         <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" strokeWidth={2.5} />
                         {step}
                       </li>
@@ -270,17 +267,20 @@ export default function CompletePMSSolutionPage() {
       </section>
 
       {/* Quick & Easy Implementation - 4 steps */}
-      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-neutral-200 gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Quick & Easy Implementation
             </h2>
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-neutral-600">
+              Get up and running in four simple steps
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -292,7 +292,7 @@ export default function CompletePMSSolutionPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300 text-center"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl text-center"
               >
                 <div className="w-14 h-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-3 text-xl font-bold">
                   {step.number}
@@ -300,8 +300,8 @@ export default function CompletePMSSolutionPage() {
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-2">
                   <StepIcon icon={step.icon} className="w-5 h-5 text-primary" strokeWidth={1.75} />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground">{step.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{step.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-primary">{step.title}</h3>
+                <p className="text-sm text-neutral-600 mt-1">{step.desc}</p>
               </motion.div>
             ))}
           </div>

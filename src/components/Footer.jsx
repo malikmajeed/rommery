@@ -36,7 +36,7 @@ export const Footer = () => {
             className="lg:col-span-1"
           >
             <Link href="/" className="text-xl font-bold tracking-tight text-neutral-900">
-              Rommery
+              <img src="./rommery-logo-black.png" alt="Rommery" className="h-20" />
             </Link>
             <p className="mt-3 text-sm text-neutral-600 max-w-xs">
               Smart digital solutions for hotels and apartments. Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.

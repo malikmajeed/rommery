@@ -31,7 +31,7 @@ export const Header = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - left */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <img src="./remmery-logo.png" alt="Rommery" className="h-10" />
+          <img src="./rommery-logo-black.png" alt="Rommery" className="h-10" />
         </Link>
 
         {/* Desktop: center nav */}
@@ -55,13 +55,13 @@ export const Header = () => {
             {servicesOpen && (
               <div className="absolute left-0 top-full pt-1">
                 <div
-                  className="min-w-[220px] rounded-2xl py-1 shadow-2xl"
+                  className="min-w-[220px] rounded-2xl py-1 isolate"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.72)',
+                    background: 'rgba(250, 250, 250)',
                     backdropFilter: 'saturate(180%) blur(20px)',
                     WebkitBackdropFilter: 'saturate(180%) blur(20px)',
-                    border: '1px solid rgba(255, 255, 255, 0.45)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(255, 255, 255, 0.5) inset',
+                    border: '1px solid rgba(0, 0, 0, 0.06)',
+                    boxShadow: '0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 4px 24px rgba(0, 0, 0, 0.06)',
                   }}
                 >
                   {servicesLinks.map((item) => (

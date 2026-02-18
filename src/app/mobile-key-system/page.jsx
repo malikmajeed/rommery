@@ -122,13 +122,12 @@ export default function MobileKeySystemPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-          
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Seamless Access in 5 Steps
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-black/80">
               Simple, secure, and seamless mobile key access in five easy steps
             </p>
           </motion.div>
@@ -142,20 +141,20 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
+                  <div className="shrink-0 w-12 h-12 rounded-xl text-primary-foreground flex items-center justify-center">
                     <StepIcon icon={step.icon} className="w-6 h-6" strokeWidth={1.75} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <span className="text-xs font-bold text-primary uppercase tracking-wider">
                       {step.number}
                     </span>
-                    <h3 className="font-heading text-lg font-medium tracking-tight text-foreground mt-1 mb-2">
+                    <h3 className="font-heading text-lg font-semibold tracking-tight text-primary mt-1 mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-sm/6 text-muted-foreground">{step.desc}</p>
+                    <p className="text-md/6 text-black/80">{step.desc}</p>
                   </div>
                 </div>
               </motion.article>
@@ -170,7 +169,7 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
@@ -180,10 +179,10 @@ export default function MobileKeySystemPage() {
                     <span className="text-xs font-bold text-primary uppercase tracking-wider">
                       {step.number}
                     </span>
-                    <h3 className="font-heading text-lg font-medium tracking-tight text-foreground mt-1 mb-2">
+                    <h3 className="font-heading text-lg font-semibold tracking-tight text-primary mt-1 mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-sm/6 text-muted-foreground">{step.desc}</p>
+                    <p className="text-md/6 text-black/80">{step.desc}</p>
                   </div>
                 </div>
               </motion.article>
@@ -193,19 +192,18 @@ export default function MobileKeySystemPage() {
       </section>
 
       {/* Features */}
-      <section className="relative py-16 sm:py-24 bg-secondary/40 border-t border-border gradient-dots-subtle">
+      <section className="relative py-16 sm:py-24 bg-background border-t border-neutral-200 gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-        
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Key Features
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-black/80">
               Advanced security and convenience features for modern hotels
             </p>
           </motion.div>
@@ -219,18 +217,18 @@ export default function MobileKeySystemPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="rounded-2xl glass-card p-6 transition-all duration-300"
+                className="rounded-2xl   shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl -primary/10 flex items-center justify-center mb-4">
                   <StepIcon icon={feature.icon} className="w-6 h-6 text-primary" strokeWidth={1.75} />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
+                <h3 className="font-heading text-lg font-semibold text-primary mb-1">
                   {feature.title}
                 </h3>
-                <p className="text-sm/6 text-muted-foreground mb-3">{feature.subtitle}</p>
+                <p className="text-md/6 text-black/80 mb-3">{feature.subtitle}</p>
                 <ul className="space-y-1.5">
                   {feature.points.map((point) => (
-                    <li key={point} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <li key={point} className="flex items-center gap-2 text-sm text-neutral-500">
                       <Check className="w-4 h-4 text-primary shrink-0" strokeWidth={2.5} />
                       {point}
                     </li>
@@ -243,19 +241,18 @@ export default function MobileKeySystemPage() {
       </section>
 
       {/* Benefits */}
-      <section className="relative py-16 sm:py-24 bg-background border-t border-border gradient-dots-subtle">
+      <section className="relative py-16 sm:py-24 -background border-t border-neutral-200 gradient-dots-subtle">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-14"
+            className="text-center mb-10 sm:mb-16"
           >
-           
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold -gradient-to-r from-primary to-secondary -clip-text text-transparent">
               Why Mobile Keys?
             </h2>
-            <p className="text-sm/6 text-muted-foreground mt-3 max-w-xl mx-auto">
+            <p className="mt-4 max-w-xl mx-auto text-lg/6 text-black/80">
               Discover the advantages of going keyless with mobile access
             </p>
           </motion.div>
@@ -275,10 +272,10 @@ export default function MobileKeySystemPage() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex items-center gap-3 text-foreground"
+                  className="flex items-center gap-3 text-neutral-800"
                 >
                   <Check className="w-5 h-5 text-primary shrink-0" strokeWidth={2.5} />
-                  <span className="text-sm/6 sm:text-base">{item}</span>
+                  <span className="text-md/6 sm:text-base text-black/80">{item}</span>
                 </motion.li>
               ))}
             </ul>

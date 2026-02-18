@@ -1,7 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Smartphone, Lock, Monitor, Check, SmartphoneIcon, Cloud, Headphones, RefreshCw, ArrowRight } from "lucide-react";
+import {
+  Smartphone,
+  Lock,
+  Monitor,
+  Check,
+  SmartphoneIcon,
+  Cloud,
+  Headphones,
+  RefreshCw,
+  ArrowRight,
+  Wifi,
+  Shield,
+  Zap,
+} from "lucide-react";
 import { PrimaryButton } from "./ui/PrimaryButton";
 
 const services = [
@@ -9,94 +23,135 @@ const services = [
     icon: Smartphone,
     title: "Digital Check-In & Check-Out",
     description: "Allow guests to check in and check out without the front desk.",
-    features: ["Online self check-in", "Digital key generation", "Automated check-out", "Reduced front desk workload", "Faster guest experience"],
+    features: ["Online self check-in", "Digital key generation", "Automated check-out", "Reduced front desk workload"],
     benefits: ["24/7 guest access", "Lower staffing costs", "Better guest satisfaction"],
+    accent: "from-blue-500/10 to-primary/5",
+    stat: "3x faster",
+    statLabel: "check-in speed",
   },
   {
     icon: Lock,
     title: "Smart Lock Integration with PMS",
     description: "Connect smart locks directly with your Property Management System.",
-    features: ["Automatic key creation after booking", "Remote door access control", "Integration with major smart lock systems", "Real-time access management"],
+    features: ["Automatic key creation after booking", "Remote door access control", "Real-time access management"],
     benefits: ["No physical keys", "Higher security", "Fully automated guest access"],
+    accent: "from-emerald-500/10 to-primary/5",
+    stat: "100%",
+    statLabel: "keyless access",
   },
   {
     icon: Monitor,
     title: "Self-Service Kiosk Integration",
     description: "Install a self-service kiosk for automated check-in at the property.",
-    features: ["Passport/ID scanning", "Payment processing", "Key or access code issuance", "PMS synchronization"],
-    benefits: ["No front desk queues", "24/7 automated reception", "Ideal for apartments and budget hotels"],
+    features: ["Passport/ID scanning", "Payment processing", "Key or access code issuance"],
+    benefits: ["No front desk queues", "24/7 automated reception"],
+    accent: "from-violet-500/10 to-primary/5",
+    stat: "24/7",
+    statLabel: "automated reception",
   },
   {
     icon: SmartphoneIcon,
     title: "Mobile Key System",
     description: "Secure smartphone-based room access using encrypted keys that work seamlessly with your smart lock.",
-    features: ["Seamless integration with smart locks", "Encrypted mobile keys", "Real-time access management", "Guest-friendly app for check-in and check-out"],
+    features: [
+      "Seamless integration with smart locks",
+      "Encrypted mobile keys",
+      "Real-time access management",
+      "Guest-friendly app for check-in and check-out",
+    ],
     benefits: ["No physical key cards", "Convenient access for guests", "Remote key sharing"],
+    accent: "from-orange-500/10 to-primary/5",
+    stat: "256-bit",
+    statLabel: "encryption",
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.5 },
-  }),
-};
+const ServicesSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const Service3Icon = services[3].icon;
 
-const ServicesSection = () => (
-  <section id="services" className="relative py-10 sm:py-16 bg-background gradient-dots-subtle">
-    <div className="relative container mx-auto px-4 sm:px-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-10 sm:mb-16"
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-3">
-          Everything You Need to Go Digital
-        </h2>
-        <p className="text-sm/6 text-muted-foreground mt-4 max-w-xl mx-auto px-1">
-          Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
-        </p>
-      </motion.div>
+  return (
+    <section id="services" className="relative py-10 sm:py-16 bg-background gradient-dots-subtle">
+      <div className="relative container mx-auto px-4 sm:px-6">
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.slice(0, 3).map((service, i) => (
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10 sm:mb-16"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mt-3">
+            Everything You Need to Go Digital
+          </h2>
+          <p className="text-lg/6 text-neutral-600 mt-4 max-w-xl mx-auto px-1">
+            Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
+          </p>
+        </motion.div>
+
+        {/* Grid: 3 cols, first row = 3 cards, second row = 4th card full-width, third row = PMS CTA */}
+        <div className="max-w-5xl mx-auto">
+
+          {/* Row 1: 3 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-5 sm:mb-6">
+            {services.slice(0, 3).map((service, i) => (
+              <ServiceCard
+                key={service.title}
+                service={service}
+                index={i}
+                isHovered={hoveredIndex === i}
+                onEnter={() => setHoveredIndex(i)}
+                onLeave={() => setHoveredIndex(null)}
+              />
+            ))}
+          </div>
+
+          {/* Row 2: 4th card — full width horizontal */}
           <motion.div
-            key={service.title}
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
+            custom={3}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group relative glass-card p-6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+            transition={{ delay: 0.45, duration: 0.5 }}
+            onMouseEnter={() => setHoveredIndex(3)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            className={`group relative rounded-2xl overflow-hidden  shadow-lg transition-all duration-300 hover:-translate-y-1 mb-5 sm:mb-6 ${hoveredIndex === 3 ? "card-snake-border card-snake-active" : ""}`}
           >
-            <div className="absolute inset-x-0 top-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />
+            <div className={`absolute inset-0 bg-gradient-to-br ${services[3].accent} opacity-60 pointer-events-none`} />
+            <div className="relative flex flex-col sm:flex-row items-stretch gap-0">
 
-            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300 ring-2 ring-border group-hover:ring-ring">
-              <service.icon className="w-6 h-6 text-foreground" strokeWidth={1.75} />
-            </div>
+              {/* Left: icon + stat */}
+              <div className="flex sm:flex-col items-center justify-center gap-4 sm:gap-3 px-6 py-5 sm:py-6 sm:w-44 border-b sm:border-b-0 sm:border-r border-neutral-100 shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 ring-1 ring-primary/20 flex items-center justify-center shrink-0">
+                  <Service3Icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary leading-tight">{services[3].stat}</div>
+                  <div className="text-xs text-neutral-500 mt-0.5">{services[3].statLabel}</div>
+                </div>
+              </div>
 
-            <h3 className="text-xl font-medium tracking-tight text-foreground mb-2">{service.title}</h3>
-            <p className="text-sm/6 text-muted-foreground mb-4">{service.description}</p>
+              {/* Middle: title + description + features */}
+              <div className="flex-1 px-6 py-5 sm:py-6">
+                <h3 className="text-2xl font-semibold tracking-tight text-primary mb-1.5">{services[3].title}</h3>
+                <p className="text-md/6 text-neutral-600 mb-3">{services[3].description}</p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
+                  {services[3].features.map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <Check className="w-3.5 h-3.5 text-black/80 mt-0.5 shrink-0" strokeWidth={2.5} />
+                      <span className="text-sm/5 text-black/80">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <ul className="space-y-2 mb-5">
-              {service.features.map((f) => (
-                <li key={f} className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" strokeWidth={2.5} />
-                  <span className="text-sm/6 text-muted-foreground">{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="pt-4 border-t border-border">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Key Benefits</p>
-              <div className="flex flex-wrap gap-1.5">
-                {service.benefits.map((b) => (
+              {/* Right: benefits */}
+              <div className="flex sm:flex-col justify-start gap-2 px-6 py-5 sm:py-6 sm:w-52 border-t sm:border-t-0 sm:border-l border-neutral-100 shrink-0">
+                <div className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-0 sm:mb-1 hidden sm:block">Benefits</div>
+                {services[3].benefits.map((b) => (
                   <span
                     key={b}
-                    className="text-xs bg-secondary text-secondary-foreground rounded-full px-2.5 py-1 font-medium border border-border"
+                    className="text-[14px] bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium border border-primary/20"
                   >
                     {b}
                   </span>
@@ -104,127 +159,152 @@ const ServicesSection = () => (
               </div>
             </div>
           </motion.div>
-        ))}
-      </div>
 
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-10 gap-6">
-        <div className="w-full lg:col-span-1">
-          {services[3] && (() => {
-            const Icon4 = services[3].icon; // Uppercase variable
-            return (
-              <motion.div
-                key={services[3].title}
-                custom={3}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="group relative glass-card p-6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl" />
-
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300 ring-2 ring-border group-hover:ring-ring">
-                  <Icon4 className="w-6 h-6 text-foreground" strokeWidth={1.75} />
-                </div>
-
-                <h3 className="text-xl font-medium tracking-tight text-foreground mb-2">{services[3].title}</h3>
-                <p className="text-sm/6 text-muted-foreground mb-4">{services[3].description}</p>
-
-                <ul className="space-y-2 mb-5">
-                  {services[3].features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" strokeWidth={2.5} />
-                      <span className="text-sm/6 text-muted-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pt-4 border-t border-border">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Key Benefits</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {services[3].benefits.map((b) => (
-                      <span
-                        key={b}
-                        className="text-xs bg-secondary text-secondary-foreground rounded-full px-2.5 py-1 font-medium border border-border"
-                      >
-                        {b}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })()}
-        </div>
-
-          {/* SMART PMS CARD */}
-        <div className="w-full lg:col-span-2 rounded-2xl relative min-h-[280px] sm:min-h-[320px] overflow-hidden border border-border bg-transparent">
-          {/* Image as background */}
-          <div className="absolute inset-0 z-0">
-            <img
-              className="w-full h-full object-cover object-center"
-              src="./smart-pms-dashboard.png"
-              alt="Smart PMS dashboard"
-              style={{ background: 'transparent' }}
-            />
-          </div>
-          {/* Dark overlay */}
-          <div className="absolute inset-0 z-[1] bg-primary/90" aria-hidden />
-          {/* Content above image - absolute inset-0 so it fills card and justify-center works */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8">
-            <h3 className="text-lg sm:text-xl font-medium tracking-tight text-white mb-2 sm:mb-3 max-w-md">
-              Complete PMS Solution
-            </h3>
-            <p className="text-xs sm:text-sm/6 text-primary-foreground/90 mb-3 sm:mb-4 max-w-md">
-              Automate your entire hospitality operation with customized smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
-            </p>
-            <ul className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 mb-4 sm:mb-5 text-xs sm:text-sm/6 text-primary-foreground/90">
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-white shrink-0" strokeWidth={2.5} />
-                Smart lock integration
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-white shrink-0" strokeWidth={2.5} />
-                PMS integration
-              </li>
-              <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-white shrink-0" strokeWidth={2.5} />
-                Kiosk integration
-              </li>
-            </ul>
-            <PrimaryButton
-              label="Contact Now!"
-              icon={<ArrowRight />}
-              className="!bg-accent !text-accent-foreground border-accent hover:!bg-accent/90"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Badges row */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
-      >
-        {[
-          { icon: Cloud, label: "Cloud based" },
-          { icon: Headphones, label: "24/7 support" },
-          { icon: RefreshCw, label: "Regular updated" },
-        ].map(({ icon: Icon, label }) => (
-          <span
-            key={label}
-            className="inline-flex items-center gap-2 rounded-full bg-secondary border border-border px-4 py-2 text-sm font-medium text-foreground"
+          {/* Row 3: PMS CTA card — full width */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="rounded-2xl relative min-h-[240px] sm:min-h-[280px] overflow-hidden"
           >
-            <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
-            {label}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-);
+            <div className="absolute inset-0 z-0">
+              <img
+                className="w-full h-full object-cover object-center"
+                src="./smart-pms-dashboard.png"
+                alt="Smart PMS dashboard"
+              />
+            </div>
+            <div className="absolute inset-0 z-[1] bg-primary/90" aria-hidden />
+
+            {/* Content layout: left text + right feature pillars */}
+            <div className="absolute inset-0 z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-10">
+
+              {/* Left */}
+              <div className="flex-1 text-left max-w-md">
+                <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 text-xs font-semibold text-white/80 mb-3 border border-white/20">
+                  <Zap className="w-3.5 h-3.5" />
+                  All-in-one platform
+                </div>
+                <h3 className="text-2xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+                  Complete PMS Solution
+                </h3>
+                <p className="text-md/6 text-primary-foreground/80 mb-5">
+                  Automate your entire hospitality operation with smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
+                </p>
+                <PrimaryButton
+                  label="Contact Now!"
+                  icon={<ArrowRight />}
+                  className="!text-white !border-white "
+                />
+              </div>
+
+              {/* Right: 3 feature pillars */}
+              <div className="flex flex-row sm:flex-col gap-3 shrink-0">
+                {[
+                  { icon: Lock, label: "Smart lock integration" },
+                  { icon: Monitor, label: "PMS integration" },
+                  { icon: Smartphone, label: "Kiosk integration" },
+                ].map(({ icon: Icon, label }) => (
+                  <div
+                    key={label}
+                    className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 backdrop-blur-sm"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                      <Icon className="w-3.5 h-3.5 text-white" strokeWidth={2} />
+                    </div>
+                    <span className="text-sm font-medium text-white whitespace-nowrap">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Badges row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
+        >
+          {[
+            { icon: Cloud, label: "Cloud based" },
+            { icon: Headphones, label: "24/7 support" },
+            { icon: RefreshCw, label: "Regular updated" },
+          ].map(({ icon: Icon, label }) => (
+            <span
+              key={label}
+              className="inline-flex items-center gap-2 rounded-full  border border-primary px-4 py-2 text-md text-primary font-medium "
+            >
+              <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
+              {label}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// Extracted card component for the first 3
+function ServiceCard({ service, index, isHovered, onEnter, onLeave }) {
+  return (
+    <motion.div
+      custom={index}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.15, duration: 0.5 }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      className={`group relative rounded-2xl overflow-hidden  shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col ${isHovered ? "card-snake-border card-snake-active" : ""}`}
+    >
+      {/* Subtle gradient bg */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-60 pointer-events-none`} />
+
+      <div className="relative flex flex-col flex-1 p-5">
+        {/* Top row: icon + stat */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="w-11 h-11 rounded-xl bg-primary/10 ring-1 ring-primary/20 flex items-center justify-center">
+            <service.icon className="w-5 h-5 text-primary" strokeWidth={1.75} />
+          </div>
+          <div className="text-right">
+            <div className="text-xl font-bold text-primary leading-tight">{service.stat}</div>
+            <div className="text-[14px] text-black/60 mt-0.5 leading-tight">{service.statLabel}</div>
+          </div>
+        </div>
+
+        {/* Title + description */}
+        <h3 className="text-2xl font-semibold tracking-tight text-primary mb-1.5 leading-snug">{service.title}</h3>
+        <p className="text-sm/5 text-black/80 mb-4 flex-1">{service.description}</p>
+
+        {/* Features */}
+        <ul className="space-y-1.5 mb-4">
+          {service.features.slice(0, 3).map((f) => (
+            <li key={f} className="flex items-start gap-2">
+              <Check className="w-3.5 h-3.5 text-black/80 mt-0.5 shrink-0" strokeWidth={2.5} />
+              <span className="text-sm/5 text-black/80">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Benefits */}
+        <div className="pt-3 border-t border-neutral-100">
+          <div className="flex flex-wrap gap-1.5">
+            {service.benefits.slice(0, 2).map((b) => (
+              <span
+                key={b}
+                className="text-[14px] bg-primary/10 text-primary rounded-full px-2.5 py-0.5 font-medium border border-primary/20"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default ServicesSection;

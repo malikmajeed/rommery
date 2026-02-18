@@ -26,7 +26,7 @@ const steps = [
 ];
 const HowItWorkSection = () => {
   return (
-    <section id="how-it-works" className="relative py-24 bg-secondary/40 gradient-dots-subtle">
+    <section id="how-it-works" className="relative py-24  gradient-dots-subtle">
       <div className="relative container mx-auto px-6">
         {/* Section header */}
         <motion.div
@@ -36,10 +36,10 @@ const HowItWorkSection = () => {
           className="text-center mb-16"
         >
           
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Four Steps to Full Automation
           </h2>
-          <p className="text-sm/6 text-muted-foreground mt-4 max-w-lg mx-auto">
+          <p className="text-lg/6 text-black/80 mt-4 max-w-lg mx-auto">
             A fully automated guest experience from booking to check-out.
           </p>
         </motion.div>
@@ -74,19 +74,21 @@ const HowItWorkSection = () => {
               className="absolute top-7 bottom-7 left-[calc(1.75rem+0.5px)] w-px bg-border"
               aria-hidden
             />
-            {steps.map((step, i) => (
+            {steps.map((step, i) => {
+              const StepIcon = step.icon;
+              return (
               <motion.div
                 key={step.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12, duration: 0.45 }}
-                className="relative flex items-start gap-5 z-10 pb-10 last:pb-0"
+                className="group relative flex items-start gap-5 z-10 pb-10 last:pb-0 cursor-default"
               >
-                {/* Icon */}
+                {/* Icon - reacts to hover anywhere on this step row */}
                 <div className="shrink-0 w-14 flex justify-center">
-                  <div className="w-14 h-14 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-md ring-4 ring-background">
-                    <step.icon className="w-6 h-6" />
+                  <div className="w-14 h-14 rounded-2xl bg-white border border-primary flex items-center justify-center shadow-md ring-4 ring-background transition-colors duration-200 group-hover:bg-primary group-hover:border-primary">
+                    <StepIcon className="w-6 h-6 text-primary transition-colors duration-200 group-hover:text-white" />
                   </div>
                 </div>
                 {/* Content */}
@@ -94,15 +96,16 @@ const HowItWorkSection = () => {
                   <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/15 uppercase tracking-wider">
                     Step {i + 1}
                   </span>
-                  <h3 className="text-xl font-medium tracking-tight text-foreground mt-1.5 mb-1">
+                  <h3 className="text-xl font-medium tracking-tight text-primary mt-1.5 mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-sm/6 text-muted-foreground">
+                  <p className="text-sm/6 text-black/80">
                     {step.desc}
                   </p>
                 </div>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </div>
