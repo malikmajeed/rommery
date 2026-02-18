@@ -11,7 +11,7 @@ export const PrimaryButton = ({ label, icon, className = "", noIconRotate = fals
       type="button"
       {...rest}
       className={cn(
-        "btn-revolving-border group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-transparent text-foreground font-medium shadow-md hover:shadow-lg transition-all duration-300 border-white border-1",
+        "btn-revolving-border group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-transparent text-foreground font-medium shadow-md hover:shadow-lg transition-all duration-300",
         className
       )}
     >

@@ -137,23 +137,24 @@ body {
   inherits: false;
 }
 
-/* Animated snake border */
+/* Animated snake border - default: low-opacity border, hover: snake */
 .btn-revolving-border {
   --border-radius: 9999px;
   --border-width: 2px;
   --angle: 0deg;
 
   position: relative;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-sizing: border-box;
   z-index: 1;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Allow Tailwind border utilities to show (they're overridden by border: 0 above) */
-.btn-revolving-border.border.border-white {
-  border: 1px solid rgb(255 255 255) !important;
+.btn-revolving-border:hover {
+  border-color: transparent;
 }
 
+/* Snake gradient border (visible on hover only) */
 .btn-revolving-border::after {
   content: "";
   position: absolute;
@@ -185,7 +186,7 @@ body {
   mask-composite: exclude;
 
   opacity: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity 0.35s ease;
 
   pointer-events: none;
   z-index: -1;

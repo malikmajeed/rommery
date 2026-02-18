@@ -1,12 +1,16 @@
 "use client";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 export const SecondaryButton = ({ label, icon, className = "", ...rest }) => {
   return (
     <button
       type="button"
       {...rest}
-      className={`btn-revolving-border group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-transparent text-foreground font-medium shadow-md hover:shadow-lg transition-all duration-300 ${className}`}
+      className={cn(
+        "btn-revolving-border group relative flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-transparent text-foreground font-medium shadow-md hover:shadow-lg transition-all duration-300",
+        className
+      )}
     >
       <span className="relative z-10">{label}</span>
       {icon &&
