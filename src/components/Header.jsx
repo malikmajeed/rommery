@@ -19,13 +19,13 @@ export const Header = () => {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full text-foreground shadow-lg"
+      className="sticky top-0 z-50 w-full text-neutral-800 shadow-lg"
       style={{
-        // background: 'rgba(121, 121, 121, 0.21)',
+        background: 'rgba(250, 250, 250, 0.85)',
         backdropFilter: 'saturate(180%) blur(20px)',
         WebkitBackdropFilter: 'saturate(180%) blur(20px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.5)',
-        boxShadow: '0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.06)',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
+        boxShadow: '0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 4px 24px rgba(0, 0, 0, 0.06)',
       }}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -38,7 +38,7 @@ export const Header = () => {
         <nav className="hidden lg:flex lg:items-center lg:gap-1 xl:gap-2">
           <Link
             href="/"
-            className="rounded-md px-3 py-2 text-sm font-medium text-foreground/90 hover:bg-foreground/10 hover:text-foreground"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             Home
           </Link>
@@ -47,7 +47,7 @@ export const Header = () => {
               type="button"
               onClick={() => setServicesOpen((v) => !v)}
               onBlur={() => setTimeout(() => setServicesOpen(false), 150)}
-              className="flex items-center gap-0.5 rounded-md px-3 py-2 text-sm font-medium text-foreground/90 hover:bg-foreground/10 hover:text-foreground"
+              className="flex items-center gap-0.5 rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
             >
               Services
               <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
@@ -68,7 +68,7 @@ export const Header = () => {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-black/5 rounded-lg mx-1 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-neutral-800 hover:bg-black/5 hover:text-neutral-900 rounded-lg mx-1 transition-colors"
                       onClick={() => setServicesOpen(false)}
                     >
                       <Check className="h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={2.5} />
@@ -81,7 +81,7 @@ export const Header = () => {
           </div>
           <Link
             href="#about"
-            className="rounded-md px-3 py-2 text-sm font-medium text-foreground/90 hover:bg-foreground/10 hover:text-foreground"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             About Us
           </Link>
@@ -89,14 +89,14 @@ export const Header = () => {
             href="https://crito.io/"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md px-3 py-2 text-sm font-medium text-foreground/90 hover:bg-foreground/10 hover:text-foreground"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
             Hardware
           </a>
         </nav>
 
         {/* Desktop: Contact Now button - right */}
-        <div className="hidden lg:block shrink-0"><PrimaryButton label="Contact Now" icon={<Phone strokeWidth={1} />}  noIconRotate />
+        <div className="hidden lg:block shrink-0"><PrimaryButton label="Contact Now" icon={<Phone strokeWidth={1} />} className='text-black'  noIconRotate />
         
         </div>
 
@@ -104,7 +104,7 @@ export const Header = () => {
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-full bg-foreground/10 p-2 text-foreground hover:bg-foreground/20"
+            className="inline-flex items-center justify-center rounded-full bg-black/10 p-2 text-neutral-800 hover:bg-black/15 transition-colors"
             aria-label="Contact"
           >
             <Phone className="h-5 w-5" />
@@ -112,7 +112,7 @@ export const Header = () => {
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-foreground/10"
+            className="inline-flex items-center justify-center rounded-md p-2 text-neutral-800 hover:bg-black/5 transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -136,7 +136,7 @@ export const Header = () => {
               <li>
                 <Link
                   href="/"
-                  className="block rounded-md px-3 py-3 text-base font-medium text-foreground/90 hover:bg-foreground/10"
+                  className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   Home
@@ -146,18 +146,18 @@ export const Header = () => {
                 <button
                   type="button"
                   onClick={() => setServicesOpenMobile((v) => !v)}
-                  className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-base font-medium text-foreground/90 hover:bg-foreground/10"
+                  className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                 >
                   Services
                   <ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${servicesOpenMobile ? 'rotate-180' : ''}`} />
                 </button>
                 {servicesOpenMobile && (
-                  <ul className="border-l border-foreground/10 pl-4 py-1">
+                  <ul className="border-l border-neutral-200 pl-4 py-1">
                     {servicesLinks.map((item) => (
                       <li key={item.label}>
                         <Link
                           href={item.href}
-                          className="flex items-center gap-2 py-2 text-sm text-foreground/80 hover:text-foreground"
+                          className="flex items-center gap-2 py-2 text-sm text-neutral-700 hover:text-neutral-900 hover:bg-black/5 rounded-md px-2 -mx-2 transition-colors"
                           onClick={() => setMobileOpen(false)}
                         >
                           <Check className="h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={2.5} />
@@ -171,7 +171,7 @@ export const Header = () => {
               <li>
                 <Link
                   href="#about"
-                  className="block rounded-md px-3 py-3 text-base font-medium text-foreground/90 hover:bg-foreground/10"
+                  className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   About Us
@@ -182,7 +182,7 @@ export const Header = () => {
                   href="https://crito.io/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block rounded-md px-3 py-3 text-base font-medium text-foreground/90 hover:bg-foreground/10"
+                  className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   Hardware
