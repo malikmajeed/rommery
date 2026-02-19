@@ -173,11 +173,11 @@ const ServicesSection = () => {
             </div>
             <div className="absolute inset-0 z-[1] bg-primary/90" aria-hidden />
 
-            {/* Content layout: left text + right feature pillars */}
-            <div className="absolute inset-0 z-10 flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-10">
+            {/* Content layout: left text + right feature pillars — extra padding on mobile so badge/button don’t touch card edges */}
+            <div className="absolute inset-0 z-10 flex flex-col sm:flex-row items-center justify-between gap-6 px-5 py-8 sm:p-10">
 
               {/* Left */}
-              <div className="flex-1 text-left max-w-md">
+              <div className="flex-1 text-left max-w-md pt-0.5 pb-8 sm:pt-0 sm:pb-0">
                 <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 text-xs font-semibold text-white/80 mb-3 border border-white/20">
                   <Zap className="w-3.5 h-3.5" />
                   {t("services.allInOne")}
