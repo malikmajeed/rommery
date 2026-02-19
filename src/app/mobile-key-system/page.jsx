@@ -1,5 +1,5 @@
 'use client';
-
+import {PrimaryButton} from '@/components/ui/PrimaryButton';
 import { motion } from 'framer-motion';
 import {
   KeyRound,
@@ -349,9 +349,7 @@ export default function MobileKeySystemPage() {
               <p className="text-lg text-slate-500 leading-relaxed mb-8 max-w-md">
                 Discover why leading hotels are replacing plastic key cards with secure, instant mobile access that guests love.
               </p>
-              <button className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#007aec] text-white text-sm font-semibold shadow-[0_4px_20px_rgba(0,122,236,0.38)] hover:shadow-[0_8px_32px_rgba(0,122,236,0.48)] hover:-translate-y-0.5 transition-all duration-200">
-                Get started <ArrowRight className="w-4 h-4" />
-              </button>
+              <PrimaryButton label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
             </motion.div>
 
             {/* ── Right: benefits glass card ── */}
