@@ -31,7 +31,7 @@ export const Header = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - left */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <img src="./rommery-logo-black.png" alt="Rommery" className="h-10" />
+          <img src="./Frame 34.png" alt="Rommery" className="h-10" />
         </Link>
 
         {/* Desktop: center nav */}
@@ -96,14 +96,14 @@ export const Header = () => {
         </nav>
 
         {/* Desktop: Contact Now button - right */}
-        <div className="hidden lg:block shrink-0"><PrimaryButton label="Contact Now" icon={<Phone strokeWidth={1} />} className='text-black'  noIconRotate />
-        
+        <div className="hidden lg:block shrink-0">
+          <PrimaryButton href="/contact-us" label="Contact Now" icon={<Phone strokeWidth={1} />} noIconRotate className="text-black noIconRotate" />
         </div>
 
         {/* Mobile: menu button (right) */}
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <a
-            href="#contact"
+            href="/contact-us"
             className="inline-flex items-center justify-center rounded-full bg-black/10 p-2 text-neutral-800 hover:bg-black/15 transition-colors"
             aria-label="Contact"
           >
@@ -123,7 +123,7 @@ export const Header = () => {
       {/* Mobile menu panel - glass */}
       {mobileOpen && (
         <div
-          className="border-t border-black/5 lg:hidden"
+          className="border-t border-black/5 z-10 lg:hidden"
           style={{
             background: 'rgba(255, 255, 255, 0.6)',
             backdropFilter: 'saturate(180%) blur(16px)',

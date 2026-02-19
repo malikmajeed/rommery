@@ -349,7 +349,7 @@ export default function MobileKeySystemPage() {
               <p className="text-lg text-slate-500 leading-relaxed mb-8 max-w-md">
                 Discover why leading hotels are replacing plastic key cards with secure, instant mobile access that guests love.
               </p>
-              <PrimaryButton label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
+              <PrimaryButton href="/contact-us" label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
             </motion.div>
 
             {/* ── Right: benefits glass card ── */}

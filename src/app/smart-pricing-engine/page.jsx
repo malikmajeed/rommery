@@ -417,7 +417,7 @@ export default function SmartPricingEnginePage() {
                 <p className="text-slate-700 text-lg font-medium mb-6 max-w-md">
                   Ready to put AI-driven pricing to work for your property?
                 </p>
-                <SecondaryButton label="Start optimizing revenue"  className="text-primary items-center justify-center d" />
+                <SecondaryButton href="/contact-us" label="Start optimizing revenue" className="text-primary items-center justify-center" />
               </div>
             </div>
           </motion.div>

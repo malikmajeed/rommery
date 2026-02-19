@@ -80,8 +80,8 @@ export default function HeroSection() {
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                          <PrimaryButton label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
-                          <SecondaryButton label="Live demo" icon={<Play />} className="text-black" />
+                          <PrimaryButton href="/contact-us" label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
+                          <SecondaryButton href="/contact-us" label="Live demo" icon={<Play />} className="text-black" />
                       </div>
 
           </motion.div>

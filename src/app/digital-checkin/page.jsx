@@ -211,7 +211,7 @@ export default function DigitalCheckInPage() {
             title="Ready to go fully digital?"
             description="Set up digital check-in in days, not months. Our team handles the full integration with your existing PMS."
             buttonLabel="Get Started"
-            buttonHref="/contact"
+            buttonHref="/contact-us"
             buttonIcon={<ArrowRight className="w-4 h-4" />}
           />
         </div>

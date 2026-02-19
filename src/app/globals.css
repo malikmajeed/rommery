@@ -248,3 +248,57 @@ body {
   opacity: 1;
   animation: snake 3s linear infinite;
 }
+
+/* Input snake border - same effect on focus for form fields */
+.input-snake-border-wrapper {
+  --input-border-radius: 0.75rem;
+  --input-border-width: 2px;
+  --angle: 0deg;
+  position: relative;
+  border: 1px solid rgb(226 232 240);
+  border-radius: var(--input-border-radius);
+  box-sizing: border-box;
+  z-index: 1;
+  transition: border-color 0.35s ease;
+}
+
+.input-snake-border-wrapper:focus-within {
+  border-color: transparent;
+}
+
+.input-snake-border-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--input-border-width);
+  border-radius: var(--input-border-radius);
+  box-sizing: border-box;
+  background: conic-gradient(
+    from var(--angle),
+    #00000000,
+    #4D97DD,
+    #ffffff,
+    #4D97DD,
+    #8FE5C1,
+    #4D97DD,
+    #00000000,
+    #00000000
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.input-snake-border-wrapper:focus-within::after {
+  opacity: 1;
+  animation: snake 3s linear infinite;
+}

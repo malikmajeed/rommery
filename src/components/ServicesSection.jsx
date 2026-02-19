@@ -193,9 +193,10 @@ const ServicesSection = () => {
                   Automate your entire hospitality operation with smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
                 </p>
                 <PrimaryButton
+                  href="/contact-us"
                   label="Contact Now!"
                   icon={<ArrowRight />}
-                  className="!text-white !border-white "
+                  className="!text-white !border-white"
                 />
               </div>
 
