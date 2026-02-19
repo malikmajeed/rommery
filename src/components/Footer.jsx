@@ -3,16 +3,19 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
-const servicesLinks = [
-  { label: 'Digital Check-In', href: '/digital-checkin' },
-  { label: 'Mobile Key System', href: '/mobile-key-system' },
-  { label: 'Smart Pricing Engine', href: '/smart-pricing-engine' },
-  { label: 'Complete PMS Solution', href: '/complete-pms-solution' },
+const serviceKeys = [
+  { key: 'digitalCheckIn', href: '/digital-checkin' },
+  { key: 'mobileKeySystem', href: '/mobile-key-system' },
+  { key: 'smartPricingEngine', href: '/smart-pricing-engine' },
+  { key: 'completePmsSolution', href: '/complete-pms-solution' },
 ];
 
 export const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  const servicesLinks = serviceKeys.map(({ key, href }) => ({ label: t(`header.${key}`), href }));
 
   return (
     <footer
@@ -39,7 +42,7 @@ export const Footer = () => {
               <img src="./rommery-logo-black.png" alt="Rommery" className="h-20" />
             </Link>
             <p className="mt-3 text-sm text-neutral-600 max-w-xs">
-              Smart digital solutions for hotels and apartments. Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
+              {t('footer.tagline')}
             </p>
           </motion.div>
 
@@ -51,7 +54,7 @@ export const Footer = () => {
             transition={{ delay: 0.2, duration: 0.4 }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-800">
-              Services
+              {t('footer.services')}
             </h3>
             <ul className="mt-4 space-y-2">
               {servicesLinks.map((link) => (
@@ -75,27 +78,27 @@ export const Footer = () => {
             transition={{ delay: 0.3, duration: 0.4 }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-800">
-              Who We Serve
+              {t('footer.whoWeServe')}
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
                 <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
-                  Boutique Hotels
+                  {t('footer.boutiqueHotels')}
                 </Link>
               </li>
               <li>
                 <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
-                  Vacation Rentals
+                  {t('footer.vacationRentals')}
                 </Link>
               </li>
               <li>
                 <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
-                  Serviced Apartments
+                  {t('footer.servicedApartments')}
                 </Link>
               </li>
               <li>
                 <Link href="#who-we-serve" className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors">
-                  Hotel Chains & Resorts
+                  {t('footer.hotelChainsResorts')}
                 </Link>
               </li>
             </ul>
@@ -111,7 +114,7 @@ export const Footer = () => {
           className="mt-12 border-t border-neutral-200 pt-8 sm:mt-16 sm:pt-10"
         >
           <p className="text-center text-sm text-neutral-500">
-            © {currentYear} Rommery. All rights reserved.
+            © {currentYear} Rommery. {t('footer.copyright')}
           </p>
         </motion.div>
       </div>

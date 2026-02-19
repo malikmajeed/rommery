@@ -1,131 +1,38 @@
 'use client';
-import {SecondaryButton} from '@/components/ui/SecondaryButton';
+import { SecondaryButton } from '@/components/ui/SecondaryButton';
 import { motion } from 'framer-motion';
 import {
   TrendingUp,
   Target,
   Zap,
-  Lightbulb,
   Check,
   DollarSign,
   Percent,
   Cog,
-  ArrowRight,
 } from 'lucide-react';
-
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdDgYciWcwWH05NgsVE8a3wOBP4tq7HRXzAw&s';
 
-const pricingIntelligence = [
-  {
-    icon: TrendingUp,
-    title: 'Demand Forecasting',
-    subtitle: 'Analyzes booking patterns and historical data',
-    points: [
-      'Seasonal trends identification',
-      'Event-based demand spikes',
-      'Day-of-week patterns',
-      'Booking lead time analysis',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3',
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-  },
-  {
-    icon: Target,
-    title: 'Competitor Analysis',
-    subtitle: 'Real-time monitoring of market rates',
-    points: [
-      'Competitor pricing tracking',
-      'Market positioning strategy',
-      'Occupancy rate comparisons',
-      'Rate parity management',
-    ],
-    hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5',
-    iconBg: 'bg-[#8FE5C1]/25',
-    iconColor: 'text-emerald-600',
-  },
-  {
-    icon: Zap,
-    title: 'Dynamic Adjustments',
-    subtitle: 'Automatic price optimization in real-time',
-    points: [
-      'Hourly rate updates',
-      'Occupancy-based pricing',
-      'Last-minute pricing strategies',
-      'Length-of-stay discounts',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10',
-    iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15',
-    iconColor: 'text-[#007aec]',
-  },
+const pricingIntelligenceKeys = [
+  { icon: TrendingUp, key: 'demandForecasting', subKey: 'demand', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]' },
+  { icon: Target, key: 'competitorAnalysis', subKey: 'competitor', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600' },
+  { icon: Zap, key: 'dynamicAdjustments', subKey: 'dynamic', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]' },
 ];
 
-const strategies = [
-  {
-    scenario: 'High Demand Period',
-    action: 'Increase rates by 20–40%',
-    result: 'Maximize revenue during peak times',
-    example: 'Local festival or conference',
-    color: 'from-[#007aec]/12 to-[#007aec]/4',
-    dot: 'bg-[#007aec]',
-  },
-  {
-    scenario: 'Low Occupancy',
-    action: 'Implement dynamic discounts',
-    result: 'Fill rooms that would otherwise stay empty',
-    example: 'Mid-week in off-season',
-    color: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5',
-    dot: 'bg-emerald-400',
-  },
-  {
-    scenario: 'Last-Minute Bookings',
-    action: 'Strategic rate adjustments',
-    result: 'Convert price-sensitive travelers',
-    example: '24–48 hours before check-in',
-    color: 'from-[#007aec]/8 to-[#8FE5C1]/10',
-    dot: 'bg-[#007aec]',
-  },
-  {
-    scenario: 'Extended Stays',
-    action: 'Automatic length-of-stay discounts',
-    result: 'Encourage longer bookings',
-    example: '5+ nights = 15% discount',
-    color: 'from-[#8FE5C1]/15 to-[#007aec]/6',
-    dot: 'bg-emerald-400',
-  },
+const strategyKeys = [
+  { key: 'highDemand', color: 'from-[#007aec]/12 to-[#007aec]/4', dot: 'bg-[#007aec]' },
+  { key: 'lowOccupancy', color: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', dot: 'bg-emerald-400' },
+  { key: 'lastMinute', color: 'from-[#007aec]/8 to-[#8FE5C1]/10', dot: 'bg-[#007aec]' },
+  { key: 'extendedStays', color: 'from-[#8FE5C1]/15 to-[#007aec]/6', dot: 'bg-emerald-400' },
 ];
 
-const revenueImpact = [
-  {
-    icon: DollarSign,
-    stat: '+25–40%',
-    title: 'Revenue Increase',
-    sub: 'Average RevPAR improvement',
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-    statColor: 'from-[#007aec] to-[#0099ff]',
-  },
-  {
-    icon: Percent,
-    stat: '95%+',
-    title: 'Optimal Occupancy',
-    sub: 'Balance between rate and occupancy',
-    iconBg: 'bg-[#8FE5C1]/25',
-    iconColor: 'text-emerald-600',
-    statColor: 'from-emerald-500 to-[#8FE5C1]',
-  },
-  {
-    icon: Cog,
-    stat: '100%',
-    title: 'Automation',
-    sub: 'No manual rate management needed',
-    iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15',
-    iconColor: 'text-[#007aec]',
-    statColor: 'from-[#007aec] to-[#8FE5C1]',
-  },
+const revenueImpactKeys = [
+  { icon: DollarSign, stat: '+25–40%', key: 'revenueIncrease', subKey: 'revparImprovement', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', statColor: 'from-[#007aec] to-[#0099ff]' },
+  { icon: Percent, stat: '95%+', key: 'optimalOccupancy', subKey: 'balanceRateOccupancy', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', statColor: 'from-emerald-500 to-[#8FE5C1]' },
+  { icon: Cog, stat: '100%', key: 'automation', subKey: 'noManualRate', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]', statColor: 'from-[#007aec] to-[#8FE5C1]' },
 ];
 
 const cardVariants = {
@@ -145,13 +52,33 @@ const glassCard =
   'rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-[0_4px_24px_rgba(0,122,236,0.07),0_1px_2px_rgba(0,0,0,0.04)]';
 
 export default function SmartPricingEnginePage() {
+  const { t } = useLanguage();
+  const pricingIntelligence = pricingIntelligenceKeys.map((item) => ({
+    ...item,
+    title: t(`smartPricing.${item.key}`),
+    subtitle: t(`smartPricing.${item.subKey}Subtitle`),
+    points: Array.isArray(t(`smartPricing.${item.subKey}Points`)) ? t(`smartPricing.${item.subKey}Points`) : [],
+  }));
+  const strategies = strategyKeys.map((s) => ({
+    ...s,
+    scenario: t(`smartPricing.${s.key}`),
+    action: t(`smartPricing.${s.key}Action`),
+    result: t(`smartPricing.${s.key}Result`),
+    example: t(`smartPricing.${s.key}Example`),
+  }));
+  const revenueImpact = revenueImpactKeys.map((item) => ({
+    ...item,
+    title: t(`smartPricing.${item.key}`),
+    sub: t(`smartPricing.${item.subKey}`),
+  }));
+
   return (
     <div className="bg-white">
       <PageHeroSection
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Smart Pricing Engine' }]}
-        title="Smart Pricing Engine"
+        breadcrumbs={[{ label: t('common.home'), href: '/' }, { label: t('smartPricing.breadcrumb') }]}
+        title={t('smartPricing.title')}
         image={HERO_IMAGE}
-        description="AI-powered dynamic pricing to maximize revenue and occupancy. Automatically adjust room rates based on demand, competition, and market conditions in real-time."
+        description={t('smartPricing.description')}
       />
 
       {/* ───────────── PRICING INTELLIGENCE ───────────── */}
@@ -178,17 +105,15 @@ export default function SmartPricingEnginePage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Pricing Intelligence
+              {t('smartPricing.pricingIntelligence')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1] max-w-3xl mx-auto">
-              Advanced algorithms analyze{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                multiple factors
-              </span>{' '}
-              to optimize pricing
+                {t('smartPricing.pricingHeadline')}
+              </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Real-time optimization based on demand, competition, and market conditions
+              {t('smartPricing.pricingSubtext')}
             </p>
           </motion.div>
 
@@ -262,16 +187,16 @@ export default function SmartPricingEnginePage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Strategy Engine
+              {t('smartPricing.strategyEngine')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
               Dynamic{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                strategies
+                {t('smartPricing.strategies')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Intelligent pricing that adapts automatically to every market condition
+              {t('smartPricing.strategiesSubtext')}
             </p>
           </motion.div>
 
@@ -296,7 +221,7 @@ export default function SmartPricingEnginePage() {
                   <div className="flex items-center gap-2 mb-4">
                     <div className={`w-2 h-2 rounded-full ${s.dot} shrink-0`} />
                     <span className="text-[10px] font-bold text-[#007aec] uppercase tracking-[0.12em]">
-                      Scenario
+                      {t('smartPricing.scenario')}
                     </span>
                   </div>
 
@@ -306,13 +231,13 @@ export default function SmartPricingEnginePage() {
 
                   <div className="space-y-3">
                     {[
-                      { label: 'Action', value: s.action },
-                      { label: 'Result', value: s.result },
-                      { label: 'Example', value: s.example },
-                    ].map(({ label, value }) => (
-                      <div key={label}>
+                      { labelKey: 'action', value: s.action },
+                      { labelKey: 'result', value: s.result },
+                      { labelKey: 'example', value: s.example },
+                    ].map(({ labelKey, value }) => (
+                      <div key={labelKey}>
                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em]">
-                          {label}
+                          {t(`smartPricing.${labelKey}`)}
                         </span>
                         <p className="text-[13px] text-slate-600 leading-relaxed mt-0.5">{value}</p>
                       </div>
@@ -344,16 +269,16 @@ export default function SmartPricingEnginePage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Revenue Impact
+              {t('smartPricing.revenueImpact')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1] max-w-3xl mx-auto">
               Measurable results that drive{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                profitability
+                {t('smartPricing.profitability')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Data-driven outcomes from intelligent dynamic pricing
+              {t('smartPricing.revenueImpactSubtext')}
             </p>
           </motion.div>
 
@@ -415,9 +340,9 @@ export default function SmartPricingEnginePage() {
               <div className="rounded-2xl flex flex-col items-center justify-center bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_8px_48px_rgba(0,122,236,0.10)] px-10 py-8">
                 <div className="h-1 w-24  rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] mx-auto mb-6" />
                 <p className="text-slate-700 text-lg font-medium mb-6 max-w-md">
-                  Ready to put AI-driven pricing to work for your property?
+                  {t('smartPricing.ctaText')}
                 </p>
-                <SecondaryButton href="/contact-us" label="Start optimizing revenue" className="text-primary items-center justify-center" />
+                <SecondaryButton href="/contact-us" label={t('smartPricing.ctaButton')} className="text-primary items-center justify-center" />
               </div>
             </div>
           </motion.div>

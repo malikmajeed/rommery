@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PrimaryButton } from './PrimaryButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 /**
  * Reusable CTA strip: title, description, and a primary-styled button (link or custom node).
@@ -23,11 +24,12 @@ export function CTAStrip({
   button: buttonElement,
   className = '',
 }) {
+  const { t } = useLanguage();
   const buttonContent = buttonElement ?? (
     buttonHref != null ? (
       <PrimaryButton
         href={buttonHref}
-        label={buttonLabel ?? 'Get Started'}
+        label={buttonLabel ?? t('common.getStarted')}
         icon={buttonIcon}
         noIconRotate={!!buttonIcon}
         className="!bg-accent !text-accent-foreground border-accent hover:!bg-accent/90"

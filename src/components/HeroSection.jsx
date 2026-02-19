@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { PrimaryButton } from './ui/PrimaryButton';
 import { SecondaryButton } from './ui/SecondaryButton';
 import { ArrowRight, Play } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Ease-out curve: fast start, slow end
 function easeOutCubic(t) {
@@ -54,6 +55,7 @@ function StatCounter({ end, suffix = '', duration = 1.5, delay = 0, inView }) {
 }
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
@@ -70,18 +72,18 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
-              <span className="font-light text-black/80 text-2xl">Digital Solutions for Hotels & Apartments</span>
+              <span className="font-light text-black/80 text-2xl">{t('hero.title1')}</span>
               <br />
-              <span className="font-bold text-primary"> Experience Seamless Automation</span>
+              <span className="font-bold text-primary"> {t('hero.title2')}</span>
             </h1>
 
             <p className="font-body text-black/80 mt-4 sm:mt-6 text-md/6  max-w-2xl">
-              Automate check-in, integrate smart locks, and manage your property with a fully connected PMS ecosystem.
+              {t('hero.subtitle')}
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                          <PrimaryButton href="/contact-us" label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
-                          <SecondaryButton href="/contact-us" label="Live demo" icon={<Play />} className="text-black" />
+                          <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
+                          <SecondaryButton href="/contact-us" label={t('hero.liveDemo')} icon={<Play />} className="text-black" />
                       </div>
 
           </motion.div>
@@ -175,7 +177,7 @@ export default function HeroSection() {
               <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
                 <StatCounter end={500} suffix="+" duration={1.5} delay={0.2} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">Hotels Worldwide</p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.hotelsWorldwide')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -186,7 +188,7 @@ export default function HeroSection() {
               <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
                 <StatCounter end={98} suffix="%" duration={1.2} delay={0.35} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">Guest Satisfaction</p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.guestSatisfaction')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -197,7 +199,7 @@ export default function HeroSection() {
               <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
                 <StatCounter end={60} suffix="%" duration={1.2} delay={0.5} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">Faster Check-In</p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.fasterCheckIn')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -206,7 +208,7 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.4 }}
             >
               <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">24/7</p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">Support Available</p>
+              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.supportAvailable')}</p>
             </motion.div>
           </div>
         </motion.div>

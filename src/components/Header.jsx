@@ -2,20 +2,25 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, Phone, Check, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Check } from 'lucide-react';
 import { PrimaryButton } from './ui/PrimaryButton';
+import { useLanguage } from '@/context/LanguageContext';
 
-const servicesLinks = [
-  { label: 'Digital Check-In', href: '/digital-checkin' },
-  { label: 'Mobile Key System', href: '/mobile-key-system' },
-  { label: 'Smart Pricing Engine', href: '/smart-pricing-engine' },
-  { label: 'Complete PMS Solution', href: '/complete-pms-solution' },
+const serviceKeys = [
+  { key: 'digitalCheckIn', href: '/digital-checkin' },
+  { key: 'mobileKeySystem', href: '/mobile-key-system' },
+  { key: 'smartPricingEngine', href: '/smart-pricing-engine' },
+  { key: 'completePmsSolution', href: '/complete-pms-solution' },
 ];
 
 export const Header = () => {
+  const { t, locale, setLocale } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [servicesOpenMobile, setServicesOpenMobile] = useState(false);
+
+  const toggleLanguage = () => setLocale(locale === 'en' ? 'de' : 'en');
+  const servicesLinks = serviceKeys.map(({ key, href }) => ({ label: t(`header.${key}`), href }));
 
   return (
     <header
@@ -40,7 +45,7 @@ export const Header = () => {
             href="/"
             className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
-            Home
+            {t('header.home')}
           </Link>
           <div className="relative">
             <button
@@ -49,7 +54,7 @@ export const Header = () => {
               onBlur={() => setTimeout(() => setServicesOpen(false), 150)}
               className="flex items-center gap-0.5 rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
             >
-              Services
+              {t('header.services')}
               <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
             </button>
             {servicesOpen && (
@@ -83,7 +88,7 @@ export const Header = () => {
             href="#about"
             className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
-            About Us
+            {t('header.aboutUs')}
           </Link>
           <a
             href="https://crito.io/"
@@ -91,17 +96,34 @@ export const Header = () => {
             rel="noopener noreferrer"
             className="rounded-md px-3 py-2 text-md font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors"
           >
-            Hardware
+            {t('header.hardware')}
           </a>
         </nav>
 
-        {/* Desktop: Contact Now button - right */}
-        <div className="hidden lg:block shrink-0">
-          <PrimaryButton href="/contact-us" label="Contact Now" icon={<Phone strokeWidth={1} />} noIconRotate className="text-black noIconRotate" />
+        {/* Desktop: Language toggle + Contact Now - right */}
+        <div className="hidden lg:flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="rounded-full px-3 py-2 text-sm font-medium text-neutral-800 hover:bg-black/5 hover:text-neutral-900 transition-colors border border-neutral-200/80 hover:border-primary/30"
+            aria-label={locale === 'en' ? 'Switch to German' : 'Switch to English'}
+            title={locale === 'en' ? 'Deutsch' : 'English'}
+          >
+            {locale === 'en' ? 'DE' : 'EN'}
+          </button>
+          <PrimaryButton href="/contact-us" label={t('header.contactNow')} icon={<Phone strokeWidth={1} />} noIconRotate className="text-black noIconRotate" />
         </div>
 
-        {/* Mobile: menu button (right) */}
+        {/* Mobile: language + contact + menu */}
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="inline-flex items-center justify-center rounded-full bg-black/5 px-2.5 py-2 text-sm font-medium text-neutral-800 hover:bg-black/10 transition-colors"
+            aria-label={locale === 'en' ? 'Switch to German' : 'Switch to English'}
+          >
+            {locale === 'en' ? 'DE' : 'EN'}
+          </button>
           <a
             href="/contact-us"
             className="inline-flex items-center justify-center rounded-full bg-black/10 p-2 text-neutral-800 hover:bg-black/15 transition-colors"
@@ -113,7 +135,7 @@ export const Header = () => {
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
             className="inline-flex items-center justify-center rounded-md p-2 text-neutral-800 hover:bg-black/5 transition-colors"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileOpen ? t('header.closeMenu') : t('header.openMenu')}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -139,7 +161,7 @@ export const Header = () => {
                   className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Home
+                  {t('header.home')}
                 </Link>
               </li>
               <li>
@@ -148,7 +170,7 @@ export const Header = () => {
                   onClick={() => setServicesOpenMobile((v) => !v)}
                   className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                 >
-                  Services
+                  {t('header.services')}
                   <ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${servicesOpenMobile ? 'rotate-180' : ''}`} />
                 </button>
                 {servicesOpenMobile && (
@@ -174,7 +196,7 @@ export const Header = () => {
                   className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
-                  About Us
+                  {t('header.aboutUs')}
                 </Link>
               </li>
               <li>
@@ -185,7 +207,7 @@ export const Header = () => {
                   className="block rounded-md px-3 py-3 text-base font-medium text-neutral-800 hover:bg-black/5 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Hardware
+                  {t('header.hardware')}
                 </a>
               </li>
             </ul>

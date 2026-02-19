@@ -5,50 +5,15 @@ import { motion } from 'framer-motion';
 import { Phone, Mail, HeadphonesIcon, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80';
 
-const contactInfo = [
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: '+49 176 41629153',
-    sub: 'Call us anytime',
-    href: 'tel:+4917641629153',
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-    hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3',
-  },
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'info@crito.io',
-    sub: 'Send us an email',
-    href: 'mailto:info@crito.io',
-    iconBg: 'bg-[#8FE5C1]/25',
-    iconColor: 'text-emerald-600',
-    hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5',
-  },
-  {
-    icon: HeadphonesIcon,
-    label: 'Support',
-    value: 'Available 24/7',
-    sub: "We're here to help",
-    href: null,
-    iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15',
-    iconColor: 'text-[#007aec]',
-    hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10',
-  },
-  {
-    icon: Clock,
-    label: 'Response Time',
-    value: 'Within 24 hours',
-    sub: 'Quick response guaranteed',
-    href: null,
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-    hoverGrad: 'from-[#8FE5C1]/15 to-[#007aec]/6',
-  },
+const contactInfoKeys = [
+  { icon: Phone, labelKey: 'phone', value: '+49 176 41629153', subKey: 'callAnytime', href: 'tel:+4917641629153', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3' },
+  { icon: Mail, labelKey: 'email', value: 'info@crito.io', subKey: 'sendEmail', href: 'mailto:info@crito.io', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5' },
+  { icon: HeadphonesIcon, labelKey: 'support', valueKey: 'available24_7', subKey: 'weAreHere', href: null, iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10' },
+  { icon: Clock, labelKey: 'responseTime', valueKey: 'within24Hours', subKey: 'quickResponse', href: null, iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#8FE5C1]/15 to-[#007aec]/6' },
 ];
 
 const cardVariants = {
@@ -64,6 +29,13 @@ const glassCard =
   'rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-[0_4px_24px_rgba(0,122,236,0.07),0_1px_2px_rgba(0,0,0,0.04)]';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  const contactInfo = contactInfoKeys.map((item) => ({
+    ...item,
+    label: t(`contact.${item.labelKey}`),
+    sub: t(`contact.${item.subKey}`),
+    value: item.valueKey ? t(`contact.${item.valueKey}`) : item.value,
+  }));
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -85,9 +57,9 @@ export default function ContactPage() {
   return (
     <div className="bg-white">
       <PageHeroSection
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
-        title="Get in Touch"
-        description="Have questions about our solutions? We're here to help. Reach out to our team and let's discuss how we can transform your hospitality operations."
+        breadcrumbs={[{ label: t('common.home'), href: '/' }, { label: t('contact.breadcrumbContact') }]}
+        title={t('contact.title')}
+        description={t('contact.description')}
         image={HERO_IMAGE}
         imageAlt="Contact Rommery"
       />
@@ -115,16 +87,15 @@ export default function ContactPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Contact Information
+              {t('contact.contactInformation')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
-              Ways to{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                reach us
+                {t('contact.waysToReachUs')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Choose the most convenient way to get in touch with our team
+              {t('contact.waysSubtext')}
             </p>
           </motion.div>
 
@@ -192,16 +163,16 @@ export default function ContactPage() {
               className="lg:col-span-2"
             >
               <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-                Send Us a Message
+                {t('contact.sendMessage')}
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-4">
-                Let's start a{' '}
+                {t('contact.letsStart')}{' '}
                 <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                  conversation
+                  {t('contact.conversation')}
                 </span>
               </h2>
               <p className="text-[15px] text-slate-500 leading-relaxed mb-10">
-                Fill out the form and we'll get back to you as soon as possible.
+                {t('contact.formIntro')}
               </p>
 
               {/* Quick contact chips */}
@@ -250,9 +221,9 @@ export default function ContactPage() {
                     <div className="w-16 h-16 rounded-2xl bg-[#8FE5C1]/25 flex items-center justify-center mb-5">
                       <CheckCircle2 className="w-8 h-8 text-emerald-500" strokeWidth={1.75} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-2">Message Sent!</h3>
+                    <h3 className="text-xl font-bold text-slate-800 mb-2">{t('contact.messageSent')}</h3>
                     <p className="text-slate-500 text-[15px] max-w-xs">
-                      Thank you for reaching out. We'll get back to you within 24 hours.
+                      {t('contact.thankYou')}
                     </p>
                   </motion.div>
                 ) : (
@@ -261,7 +232,7 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.09em] mb-2">
-                          Full Name <span className="text-[#007aec]">*</span>
+                          {t('contact.fullName')} <span className="text-[#007aec]">*</span>
                         </label>
                         <div className="input-snake-border-wrapper">
                           <input
@@ -269,14 +240,14 @@ export default function ContactPage() {
                             required
                             value={form.fullName}
                             onChange={handleChange}
-                            placeholder="John Smith"
+                            placeholder={t('contact.placeholderName')}
                             className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border-0 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:ring-0 transition-colors duration-200"
                           />
                         </div>
                       </div>
                       <div>
                         <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.09em] mb-2">
-                          Email Address <span className="text-[#007aec]">*</span>
+                          {t('contact.emailAddress')} <span className="text-[#007aec]">*</span>
                         </label>
                         <div className="input-snake-border-wrapper">
                           <input
@@ -285,7 +256,7 @@ export default function ContactPage() {
                             required
                             value={form.email}
                             onChange={handleChange}
-                            placeholder="john@hotel.com"
+                            placeholder={t('contact.placeholderEmail')}
                             className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border-0 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:ring-0 transition-colors duration-200"
                           />
                         </div>
@@ -296,7 +267,7 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.09em] mb-2">
-                          Phone Number
+                          {t('contact.phoneNumber')}
                         </label>
                         <div className="input-snake-border-wrapper">
                           <input
@@ -304,14 +275,14 @@ export default function ContactPage() {
                             type="tel"
                             value={form.phone}
                             onChange={handleChange}
-                            placeholder="+1 234 567 890"
+                            placeholder={t('contact.placeholderPhone')}
                             className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border-0 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:ring-0 transition-colors duration-200"
                           />
                         </div>
                       </div>
                       <div>
                         <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.09em] mb-2">
-                          Subject <span className="text-[#007aec]">*</span>
+                          {t('contact.subject')} <span className="text-[#007aec]">*</span>
                         </label>
                         <div className="input-snake-border-wrapper">
                           <input
@@ -319,7 +290,7 @@ export default function ContactPage() {
                             required
                             value={form.subject}
                             onChange={handleChange}
-                            placeholder="How can we help?"
+                            placeholder={t('contact.placeholderSubject')}
                             className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border-0 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:ring-0 transition-colors duration-200"
                           />
                         </div>
@@ -329,7 +300,7 @@ export default function ContactPage() {
                     {/* Message */}
                     <div>
                       <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.09em] mb-2">
-                        Message <span className="text-[#007aec]">*</span>
+                        {t('contact.message')} <span className="text-[#007aec]">*</span>
                       </label>
                       <div className="input-snake-border-wrapper">
                         <textarea
@@ -338,7 +309,7 @@ export default function ContactPage() {
                           rows={5}
                           value={form.message}
                           onChange={handleChange}
-                          placeholder="Tell us about your property and what you're looking for..."
+                          placeholder={t('contact.placeholderMessage')}
                           className="w-full px-4 py-3 rounded-xl bg-slate-50/80 border-0 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:ring-0 transition-colors duration-200 resize-none"
                         />
                       </div>
@@ -347,7 +318,7 @@ export default function ContactPage() {
                     {/* Submit */}
                     <PrimaryButton
                       type="submit"
-                      label="Send Message"
+                      label={t('contact.sendMessageButton')}
                       icon={<Send className="w-5 h-5" strokeWidth={2} />}
                       className="w-full font-bold  bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" noIconRotate
                     />

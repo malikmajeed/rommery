@@ -1,5 +1,5 @@
 'use client';
-import {SecondaryButton} from '@/components/ui/SecondaryButton';
+import { SecondaryButton } from '@/components/ui/SecondaryButton';
 import { motion } from 'framer-motion';
 import {
   Server,
@@ -17,102 +17,39 @@ import {
   Zap,
   ArrowRight,
 } from 'lucide-react';
-
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIpwS-RqARuMkdZUmLiLT01ucwPXr20Ohuw&s';
 
-const platforms = [
-  { name: 'Opera PMS', status: 'Full Integration', icon: Server },
-  { name: 'Mews', status: 'Full Integration', icon: Server },
-  { name: 'Apaleo', status: 'Full Integration', icon: Server },
-  { name: 'Protel', status: 'Full Integration', icon: Server },
-  { name: 'RoomMaster', status: 'Full Integration', icon: Server },
-  { name: 'Custom PMS', status: 'API Available', icon: KeyRound },
+const platformsList = [
+  { name: 'Opera PMS', statusKey: 'fullIntegration', icon: Server },
+  { name: 'Mews', statusKey: 'fullIntegration', icon: Server },
+  { name: 'Apaleo', statusKey: 'fullIntegration', icon: Server },
+  { name: 'Protel', statusKey: 'fullIntegration', icon: Server },
+  { name: 'RoomMaster', statusKey: 'fullIntegration', icon: Server },
+  { name: 'Custom PMS', statusKey: 'apiAvailable', icon: KeyRound },
 ];
 
-const dataSync = [
-  {
-    icon: Users,
-    title: 'Guest Information',
-    points: [
-      'Guest profiles and contact details',
-      'Booking and reservation data',
-      'Check-in / Check-out times',
-      'Room assignments and preferences',
-      'Special requests and notes',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3',
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-  },
-  {
-    icon: DoorOpen,
-    title: 'Room Management',
-    points: [
-      'Room availability and status',
-      'Housekeeping updates',
-      'Maintenance requests',
-      'Room type and inventory',
-      'Rate plans and packages',
-    ],
-    hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5',
-    iconBg: 'bg-[#8FE5C1]/25',
-    iconColor: 'text-emerald-600',
-  },
-  {
-    icon: CreditCard,
-    title: 'Financial Data',
-    points: [
-      'Payment transactions',
-      'Invoice generation',
-      'Billing information',
-      'Deposit tracking',
-      'Revenue reports',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10',
-    iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15',
-    iconColor: 'text-[#007aec]',
-  },
+const dataSyncKeys = [
+  { icon: Users, key: 'guestInformation', pointsKey: 'guestPoints', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]' },
+  { icon: DoorOpen, key: 'roomManagement', pointsKey: 'roomPoints', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600' },
+  { icon: CreditCard, key: 'financialData', pointsKey: 'financialPoints', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]' },
 ];
 
-const integrationBenefits = [
-  {
-    icon: RefreshCw,
-    title: 'Real-Time Sync',
-    subtitle: 'Instant data synchronization between all systems',
-    desc: 'Updates happen in real-time across PMS, mobile keys, kiosks, and all connected devices',
-    color: 'from-[#007aec]/10 to-[#007aec]/3',
-  },
-  {
-    icon: ArrowLeftRight,
-    title: 'Bi-Directional Flow',
-    subtitle: 'Two-way data exchange for complete synchronization',
-    desc: 'Changes made in either system automatically update the other',
-    color: 'from-[#8FE5C1]/18 to-[#8FE5C1]/5',
-  },
-  {
-    icon: FileCheck,
-    title: 'Zero Manual Entry',
-    subtitle: 'Eliminate duplicate data entry and human errors',
-    desc: 'Guest information entered once flows to all systems automatically',
-    color: 'from-[#007aec]/8 to-[#8FE5C1]/8',
-  },
-  {
-    icon: Rocket,
-    title: 'Fast Implementation',
-    subtitle: 'Get up and running in four simple steps',
-    desc: 'From API credentials to go-live in hours, not weeks',
-    color: 'from-[#8FE5C1]/15 to-[#007aec]/6',
-  },
+const integrationBenefitKeys = [
+  { icon: RefreshCw, key: 'realTimeSync', subKey: 'realTime', color: 'from-[#007aec]/10 to-[#007aec]/3' },
+  { icon: ArrowLeftRight, key: 'biDirectional', subKey: 'biDirectional', color: 'from-[#8FE5C1]/18 to-[#8FE5C1]/5' },
+  { icon: FileCheck, key: 'zeroManualEntry', subKey: 'zeroManual', color: 'from-[#007aec]/8 to-[#8FE5C1]/8' },
+  { icon: Rocket, key: 'fastImplementation', subKey: 'fastImpl', color: 'from-[#8FE5C1]/15 to-[#007aec]/6' },
 ];
 
-const implementationSteps = [
-  { number: '01', title: 'API Credentials', desc: 'Provide PMS access', icon: KeyRound },
-  { number: '02', title: 'Configuration', desc: 'Map data fields', icon: Settings },
-  { number: '03', title: 'Testing', desc: 'Verify sync accuracy', icon: TestTube },
-  { number: '04', title: 'Go Live', desc: 'Start real-time sync', icon: Zap },
+const implementationStepKeys = [
+  { number: '01', key: 'apiCredentials', icon: KeyRound },
+  { number: '02', key: 'configuration', icon: Settings },
+  { number: '03', key: 'testing', icon: TestTube },
+  { number: '04', key: 'goLive', icon: Zap },
 ];
 
 const cardVariants = {
@@ -132,13 +69,32 @@ const glassCard =
   'rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-[0_4px_24px_rgba(0,122,236,0.07),0_1px_2px_rgba(0,0,0,0.04)]';
 
 export default function CompletePMSSolutionPage() {
+  const { t } = useLanguage();
+  const platforms = platformsList.map((p) => ({ ...p, status: t(`completePms.${p.statusKey}`), isFullIntegration: p.statusKey === 'fullIntegration' }));
+  const dataSync = dataSyncKeys.map((item) => ({
+    ...item,
+    title: t(`completePms.${item.key}`),
+    points: Array.isArray(t(`completePms.${item.pointsKey}`)) ? t(`completePms.${item.pointsKey}`) : [],
+  }));
+  const integrationBenefits = integrationBenefitKeys.map((item) => ({
+    ...item,
+    title: t(`completePms.${item.key}`),
+    subtitle: t(`completePms.${item.subKey}Subtitle`),
+    desc: t(`completePms.${item.subKey}Desc`),
+  }));
+  const implementationSteps = implementationStepKeys.map((item) => ({
+    ...item,
+    title: t(`completePms.${item.key}`),
+    desc: t(`completePms.${item.key}Desc`),
+  }));
+
   return (
     <div className="bg-white">
       <PageHeroSection
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Complete PMS Solution' }]}
-        title="Complete PMS Solution"
+        breadcrumbs={[{ label: t('common.home'), href: '/' }, { label: t('completePms.breadcrumb') }]}
+        title={t('completePms.title')}
         image={HERO_IMAGE}
-        description="Connect seamlessly with your existing property management system. Integrates with all major PMS platforms to create a unified digital ecosystem."
+        description={t('completePms.description')}
       />
 
       {/* ───────────── SUPPORTED PLATFORMS ───────────── */}
@@ -164,16 +120,16 @@ export default function CompletePMSSolutionPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Supported Platforms
+              {t('completePms.supportedPlatforms')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
               Wide range of{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                PMS systems
+                {t('completePms.pmsSystems')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Seamless integration with all major property management systems
+              {t('completePms.platformsSubtext')}
             </p>
           </motion.div>
 
@@ -200,12 +156,12 @@ export default function CompletePMSSolutionPage() {
                   <div className="flex items-center gap-1.5 mt-1">
                     <div
                       className={`w-1.5 h-1.5 rounded-full ${
-                        p.status === 'Full Integration' ? 'bg-emerald-400' : 'bg-[#007aec]'
+                        p.isFullIntegration ? 'bg-emerald-400' : 'bg-[#007aec]'
                       }`}
                     />
                     <p
                       className={`text-[12px] font-semibold ${
-                        p.status === 'Full Integration' ? 'text-emerald-600' : 'text-[#007aec]'
+                        p.isFullIntegration ? 'text-emerald-600' : 'text-[#007aec]'
                       }`}
                     >
                       {p.status}
@@ -241,16 +197,16 @@ export default function CompletePMSSolutionPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Data Sync
+              {t('completePms.dataSync')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
               Synchronized{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                data
+                {t('completePms.data')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Complete data flow between your PMS and platform
+              {t('completePms.dataSyncSubtext')}
             </p>
           </motion.div>
 
@@ -309,17 +265,17 @@ export default function CompletePMSSolutionPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Integration Benefits
+              {t('completePms.integrationBenefits')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
               Why{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                integration
+                {t('completePms.integrationMatters')}
               </span>{' '}
               matters
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Streamlined operations through seamless system connectivity
+              {t('completePms.integrationSubtext')}
             </p>
           </motion.div>
 
@@ -371,16 +327,16 @@ export default function CompletePMSSolutionPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Implementation
+              {t('completePms.implementation')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
               Quick &{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                easy setup
+                {t('completePms.easySetup')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Get up and running in four simple steps
+              {t('completePms.implementationSubtext')}
             </p>
           </motion.div>
 
@@ -434,9 +390,9 @@ export default function CompletePMSSolutionPage() {
               <div className="rounded-2xl flex flex-col items-center justify-center bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_8px_48px_rgba(0,122,236,0.10)] px-10 py-8">
                 <div className="h-1 w-24 rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] mx-auto mb-6" />
                 <p className="text-slate-700 text-lg font-medium mb-6 max-w-md">
-                  Ready to connect your PMS and unlock a unified digital ecosystem?
+                  {t('completePms.ctaText')}
                 </p>
-                <SecondaryButton href="/contact-us" label="Start integration" icon={<ArrowRight />} className="text-primary items-center justify-center" />
+                <SecondaryButton href="/contact-us" label={t('completePms.ctaButton')} icon={<ArrowRight />} className="text-primary items-center justify-center" />
               </div>
             </div>
           </motion.div>

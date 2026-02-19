@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
 import { CTAStrip } from '@/components/ui/CTAStrip';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE =
   'https://amcdn.blob.core.windows.net/media/1/root/volkswagen-digital-check-in-kiosks-min-1.jpg';
@@ -18,39 +19,12 @@ const PROCESS_STEP_IMAGES = [
   'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=280&fit=crop',
 ];
 
-const processSteps = [
-  {
-    number: '01', title: 'Pre-Arrival Preparation',
-    desc: 'Guest receives a check-in link by email 24 hours before arrival.',
-    features: ['Automated email from your PMS', 'Mobile-friendly check-in portal', 'Secure auth with booking reference'],
-  },
-  {
-    number: '02', title: 'Guest Information Verification',
-    desc: 'Guest uploads ID and confirms booking details.',
-    features: ['ID verification and scanning', 'Automatic data validation', 'Secure, GDPR-compliant storage'],
-  },
-  {
-    number: '03', title: 'Payment & Preferences',
-    desc: 'Secure payment and room preference selection.',
-    features: ['Card authorization or pre-payment', 'Upgrades and special requests', 'Early check-in / late checkout options'],
-  },
-  {
-    number: '04', title: 'Digital Key Issuance',
-    desc: 'Mobile key is generated and sent to the guest automatically.',
-    features: ['Bluetooth mobile key', 'Access only from check-in to check-out', 'Works offline, no internet needed'],
-  },
-  {
-    number: '05', title: 'Arrival & Access',
-    desc: 'Guest goes straight to the room, no front desk needed.',
-    features: ['Walk directly to the room', 'Unlock with smartphone', 'Skip reception completely'],
-  },
-];
-
-const benefits = [
-  { icon: Clock,    title: 'Reduce Check-in Time', stat: '20s',   sub: 'Down from 7 minutes' },
-  { icon: Users,    title: 'Staff Workload',        stat: '80%',   sub: 'Reception tasks automated' },
-  { icon: Shield,   title: 'Enhanced Security',     stat: '100%',  sub: 'Verified IDs & contactless' },
-  { icon: StarIcon, title: 'Guest Satisfaction',    stat: '4.9',  sub: 'Average guest rating' },
+const stepKeys = ['step01', 'step02', 'step03', 'step04', 'step05'];
+const benefitKeys = [
+  { icon: Clock, stat: '20s', titleKey: 'reduceCheckinTime', subKey: 'downFrom7Min' },
+  { icon: Users, stat: '80%', titleKey: 'staffWorkload', subKey: 'receptionAutomated' },
+  { icon: Shield, stat: '100%', titleKey: 'enhancedSecurity', subKey: 'verifiedIds' },
+  { icon: StarIcon, stat: '4.9', titleKey: 'guestSatisfaction', subKey: 'averageRating' },
 ];
 
 function StepIcon({ icon: Icon, className, strokeWidth }) {
@@ -58,12 +32,25 @@ function StepIcon({ icon: Icon, className, strokeWidth }) {
 }
 
 export default function DigitalCheckInPage() {
+  const { t } = useLanguage();
+  const processSteps = stepKeys.map((key, i) => ({
+    number: String(i + 1).padStart(2, '0'),
+    title: t(`digitalCheckin.${key}Title`),
+    desc: t(`digitalCheckin.${key}Desc`),
+    features: Array.isArray(t(`digitalCheckin.${key}Features`)) ? t(`digitalCheckin.${key}Features`) : [],
+  }));
+  const benefits = benefitKeys.map((b) => ({
+    ...b,
+    title: t(`digitalCheckin.${b.titleKey}`),
+    sub: t(`digitalCheckin.${b.subKey}`),
+  }));
+
   return (
     <div>
       <PageHeroSection
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Digital Check-In' }]}
-        title="Digital Check-In"
-        description="Seamless mobile check-in with instant room access. Contactless, automated check-in in seconds so guests skip the front desk and go straight to their room."
+        breadcrumbs={[{ label: t('common.home'), href: '/' }, { label: t('digitalCheckin.breadcrumb') }]}
+        title={t('digitalCheckin.title')}
+        description={t('digitalCheckin.description')}
         image={HERO_IMAGE}
         imageAlt="Digital check-in kiosks"
       />
@@ -82,10 +69,10 @@ export default function DigitalCheckInPage() {
             
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent max-w-md leading-tight">
-                Complete Check-In Process
+                {t('digitalCheckin.processHeading')}
               </h2>
               <p className="text-md/6 text-black/80 max-w-xs sm:text-right">
-                A 5-step journey from booking confirmation to room access — fully automated.
+                {t('digitalCheckin.processSubtext')}
               </p>
             </div>
           </motion.div>
@@ -163,13 +150,13 @@ export default function DigitalCheckInPage() {
             viewport={{ once: true }}
             className="mb-12 sm:mb-16"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">Why it matters</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">{t('digitalCheckin.whyItMatters')}</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent max-w-sm leading-tight">
-                Key Benefits
+                {t('digitalCheckin.keyBenefits')}
               </h2>
               <p className="text-md/6 text-black/80 max-w-xs sm:text-right">
-                Digital check-in drives measurable improvements across every part of your operation.
+                {t('digitalCheckin.keyBenefitsSubtext')}
               </p>
             </div>
           </motion.div>
@@ -208,9 +195,9 @@ export default function DigitalCheckInPage() {
           </div>
 
           <CTAStrip
-            title="Ready to go fully digital?"
-            description="Set up digital check-in in days, not months. Our team handles the full integration with your existing PMS."
-            buttonLabel="Get Started"
+            title={t('digitalCheckin.ctaTitle')}
+            description={t('digitalCheckin.ctaDescription')}
+            buttonLabel={t('common.getStarted')}
             buttonHref="/contact-us"
             buttonIcon={<ArrowRight className="w-4 h-4" />}
           />

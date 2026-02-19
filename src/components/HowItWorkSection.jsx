@@ -2,29 +2,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CalendarCheck, Cpu, KeyRound, LogOut } from "lucide-react";
-const steps = [
-  {
-    icon: CalendarCheck,
-    title: "Guest Makes a Reservation",
-    desc: "Through any booking channel — OTAs, direct website, phone, or directly at the self-service kiosk on-site.",
-  },
-  {
-    icon: Cpu,
-    title: "PMS Processes Reservation",
-    desc: "Your Property Management System automatically syncs the booking and prepares everything.",
-  },
-  {
-    icon: KeyRound,
-    title: "Digital Key or Kiosk Check-In",
-    desc: "Guest receives a digital key on their phone or checks in at the self-service kiosk.",
-  },
-  {
-    icon: LogOut,
-    title: "Automatic Check-Out",
-    desc: "Guest checks out seamlessly — no front desk interaction needed.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+
 const HowItWorkSection = () => {
+  const { t } = useLanguage();
+  const steps = [
+    { icon: CalendarCheck, titleKey: "step1Title", descKey: "step1Desc" },
+    { icon: Cpu, titleKey: "step2Title", descKey: "step2Desc" },
+    { icon: KeyRound, titleKey: "step3Title", descKey: "step3Desc" },
+    { icon: LogOut, titleKey: "step4Title", descKey: "step4Desc" },
+  ].map((s) => ({ ...s, title: t(`howItWorks.${s.titleKey}`), desc: t(`howItWorks.${s.descKey}`) }));
+
   return (
     <section id="how-it-works" className="relative py-24  gradient-dots-subtle">
       <div className="relative container mx-auto px-6">
@@ -37,10 +25,10 @@ const HowItWorkSection = () => {
         >
           
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Four Steps to Full Automation
+            {t("howItWorks.heading")}
           </h2>
           <p className="text-lg/6 text-black/80 mt-4 max-w-lg mx-auto">
-            A fully automated guest experience from booking to check-out.
+            {t("howItWorks.subheading")}
           </p>
         </motion.div>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -78,7 +66,7 @@ const HowItWorkSection = () => {
               const StepIcon = step.icon;
               return (
               <motion.div
-                key={step.title}
+                key={step.titleKey}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -94,7 +82,7 @@ const HowItWorkSection = () => {
                 {/* Content */}
                 <div className="flex-1 min-w-0 pt-1">
                   <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/15 uppercase tracking-wider">
-                    Step {i + 1}
+                    {t("howItWorks.step")} {i + 1}
                   </span>
                   <h3 className="text-xl font-medium tracking-tight text-primary mt-1.5 mb-1">
                     {step.title}

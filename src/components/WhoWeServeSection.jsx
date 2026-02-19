@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 36 },
@@ -13,6 +14,7 @@ const cardVariants = {
 };
 
 export const WhoWeServeSection = () => {
+  const { t } = useLanguage();
   return (
     <section id="who-we-serve" className="relative py-24 sm:py-32 bg-background gradient-dots-subtle">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
@@ -24,10 +26,10 @@ export const WhoWeServeSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Designed for Every Type of Property
+            {t('whoWeServe.heading')}
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg/6 text-neutral-600">
-            From independent hotels to large hospitality groups, our automation solutions adapt to your property size and operational model.
+            {t('whoWeServe.subheading')}
           </p>
         </motion.div>
 
@@ -44,8 +46,8 @@ export const WhoWeServeSection = () => {
             <div className="absolute inset-px rounded-2xl lg:rounded-l-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl lg:rounded-l-[1.25rem] border border-transparent">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">Boutique Hotels</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">Deliver seamless, contactless stays while maintaining a personalized guest experience. Ideal for properties focused on service quality and operational efficiency.</p>
+                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.boutiqueHotels')}</p>
+                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.boutiqueDesc')}</p>
               </div>
               <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
                 <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-2xl shadow-xl transition-transform duration-300 group-hover:scale-[1.02]">
@@ -68,8 +70,8 @@ export const WhoWeServeSection = () => {
             <div className="absolute inset-px rounded-2xl max-lg:rounded-t-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl max-lg:rounded-t-[1.25rem]">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">Vacation Rentals</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">Automate guest access completely with 24/7 self-service check-ins. Manage multiple units from one dashboard with instant digital key generation.</p>
+                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.vacationRentals')}</p>
+                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.vacationDesc')}</p>
               </div>
               <div className="px-5 pt-10">
                 <img className="rounded-t-xl w-full h-auto object-cover max-lg:max-w-xs transition-transform duration-300 group-hover:scale-[1.02]" src="https://www.vrbo.com/vacation-ideas/wp-content/uploads/2023/06/vacation-rentals.jpg" alt="Vacation rentals" />
@@ -90,8 +92,8 @@ export const WhoWeServeSection = () => {
             <div className="absolute inset-px rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">Serviced Apartments</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">Perfect for short and long stays. Enable digital check-in, mobile key access, and automated guest management for a seamless resident experience.</p>
+                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.servicedApartments')}</p>
+                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.servicedDesc')}</p>
               </div>
               <div className="px-5 pt-10">
                 <img className="rounded-t-xl w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" src="https://images.squarespace-cdn.com/content/v1/6313226a88427102e3185a6d/1667057085115-WF2K79ONABIUVXY5BJUP/Two+MacDonnell+Road+Apartment+1.jpg" alt="Serviced apartments" />
@@ -112,8 +114,8 @@ export const WhoWeServeSection = () => {
             <div className="absolute inset-px rounded-2xl max-lg:rounded-b-[1.25rem] lg:rounded-r-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl max-lg:rounded-b-[1.25rem] lg:rounded-r-[1.25rem]">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">Hotel Chains & Resorts</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80 max-lg:text-center">Enterprise-grade hospitality automation that scales across all your properties. Centralized management, consistent guest experience, and powerful operational analytics.</p>
+                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.hotelChainsResorts')}</p>
+                <p className="mt-2 max-w-lg text-md/6 text-black/80 max-lg:text-center">{t('whoWeServe.hotelChainsDesc')}</p>
               </div>
               <div className="relative min-h-[220px] sm:min-h-[280px] w-full grow">
                 <div className="absolute inset-0 sm:top-10 sm:right-0 sm:bottom-0 sm:left-10 overflow-hidden rounded-tl-xl shadow-xl outline outline-white/10 transition-transform duration-300 group-hover:scale-[1.02]">

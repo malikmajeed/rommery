@@ -1,5 +1,5 @@
 'use client';
-import {PrimaryButton} from '@/components/ui/PrimaryButton';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { motion } from 'framer-motion';
 import {
   KeyRound,
@@ -13,94 +13,26 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
-
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE = 'https://tapkey.com/wp-content/uploads/2023/07/Blog-New-_1_-1.webp';
 
-const steps = [
-  {
-    icon: KeyRound,
-    number: '01',
-    title: 'Key Generation',
-    desc: 'After digital check-in, system generates unique encrypted mobile key',
-  },
-  {
-    icon: Send,
-    number: '02',
-    title: 'Key Delivery',
-    desc: "Key sent via app push notification or SMS link to guest's phone",
-  },
-  {
-    icon: Bluetooth,
-    number: '03',
-    title: 'Bluetooth Pairing',
-    desc: "Guest's phone automatically pairs with door lock via Bluetooth",
-  },
-  {
-    icon: DoorOpen,
-    number: '04',
-    title: 'Unlock Access',
-    desc: 'Guest approaches door, opens app, and taps to unlock',
-  },
-  {
-    icon: Clock,
-    number: '05',
-    title: 'Auto-Expiration',
-    desc: 'Key automatically expires at checkout time for security',
-  },
+const stepKeys = [
+  { icon: KeyRound, key: 'keyGeneration' },
+  { icon: Send, key: 'keyDelivery' },
+  { icon: Bluetooth, key: 'bluetoothPairing' },
+  { icon: DoorOpen, key: 'unlockAccess' },
+  { icon: Clock, key: 'autoExpiration' },
 ];
 
-const features = [
-  {
-    icon: Radio,
-    title: 'Bluetooth Low Energy',
-    subtitle: 'Works without internet connection using BLE technology',
-    points: [
-      'Automatic door unlock when approaching',
-      'Low battery consumption',
-      'Range: up to 10 meters',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3',
-    iconBg: 'bg-[#007aec]/10',
-    iconColor: 'text-[#007aec]',
-  },
-  {
-    icon: Shield,
-    title: 'Bank-Level Security',
-    subtitle: 'Military-grade encryption and secure key transmission',
-    points: [
-      'AES-256 encryption standard',
-      'Time-limited access credentials',
-      'Tamper-proof key generation',
-    ],
-    hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5',
-    iconBg: 'bg-[#8FE5C1]/25',
-    iconColor: 'text-emerald-600',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Time-Based Access',
-    subtitle: 'Automatic activation and expiration based on booking',
-    points: [
-      'Keys activate at check-in time',
-      'Automatically expire at checkout',
-      'Easy extensions for late checkout',
-    ],
-    hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10',
-    iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15',
-    iconColor: 'text-[#007aec]',
-  },
+const featureKeys = [
+  { icon: Radio, key: 'ble', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]' },
+  { icon: Shield, key: 'security', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600' },
+  { icon: CalendarClock, key: 'timeBased', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]' },
 ];
 
-const benefits = [
-  'No physical key cards to produce or replace',
-  'Zero key card waste - eco-friendly',
-  'Remote key sharing for families/groups',
-  'Real-time access logs and monitoring',
-  'Instant key revocation if phone lost',
-  'Works with all major smartphone platforms',
-];
+const benefitKeys = ['benefit1', 'benefit2', 'benefit3', 'benefit4', 'benefit5', 'benefit6'];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
@@ -120,13 +52,28 @@ const glassCard =
   'rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-[0_4px_24px_rgba(0,122,236,0.07),0_1px_2px_rgba(0,0,0,0.04)]';
 
 export default function MobileKeySystemPage() {
+  const { t } = useLanguage();
+  const steps = stepKeys.map((s, i) => ({
+    ...s,
+    number: String(i + 1).padStart(2, '0'),
+    title: t(`mobileKey.${s.key}`),
+    desc: t(`mobileKey.${s.key}Desc`),
+  }));
+  const features = featureKeys.map((f) => ({
+    ...f,
+    title: t(`mobileKey.${f.key}Title`),
+    subtitle: t(`mobileKey.${f.key}Subtitle`),
+    points: Array.isArray(t(`mobileKey.${f.key}Points`)) ? t(`mobileKey.${f.key}Points`) : [],
+  }));
+  const benefits = benefitKeys.map((k) => t(`mobileKey.${k}`)).filter(Boolean);
+
   return (
     <div className="bg-white">
       <PageHeroSection
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Mobile Key System' }]}
+        breadcrumbs={[{ label: t('common.home'), href: '/' }, { label: t('mobileKey.breadcrumb') }]}
         image={HERO_IMAGE}
-        title="Mobile Key System"
-        description="Secure smartphone-based room access for ultimate convenience. Replace physical key cards with encrypted mobile keys that work seamlessly with your existing smart lock infrastructure."
+        title={t('mobileKey.title')}
+        description={t('mobileKey.description')}
       />
 
       {/* ───────────── HOW IT WORKS ───────────── */}
@@ -155,16 +102,16 @@ export default function MobileKeySystemPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              How It Works
+              {t('mobileKey.howItWorks')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
-              Seamless access in{' '}
+              {t('mobileKey.seamlessAccessIn')}{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                5 steps
+                {t('mobileKey.seamlessIn5Steps')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Simple, secure, and seamless mobile key access — right from your guest's pocket
+              {t('mobileKey.seamlessSubtext')}
             </p>
           </motion.div>
 
@@ -191,7 +138,7 @@ export default function MobileKeySystemPage() {
                   </div>
                   <div className="min-w-0 flex-1 pt-0.5">
                     <span className="text-[10px] font-bold text-[#007aec] uppercase tracking-[0.12em]">
-                      Step {step.number}
+                      {t('mobileKey.step')} {step.number}
                     </span>
                     <h3 className="text-[15px] font-semibold text-slate-800 mt-1 mb-2 leading-snug">
                       {step.title}
@@ -229,7 +176,7 @@ export default function MobileKeySystemPage() {
                   </div>
                   <div className="min-w-0 flex-1 pt-0.5">
                     <span className="text-[10px] font-bold text-[#007aec] uppercase tracking-[0.12em]">
-                      Step {step.number}
+                      {t('mobileKey.step')} {step.number}
                     </span>
                     <h3 className="text-[15px] font-semibold text-slate-800 mt-1 mb-2 leading-snug">
                       {step.title}
@@ -266,16 +213,16 @@ export default function MobileKeySystemPage() {
             className="text-center mb-14 sm:mb-20"
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              Features
+              {t('mobileKey.features')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
-              Built for{' '}
+              {t('mobileKey.builtFor')}{' '}
               <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                modern hotels
+                {t('mobileKey.builtForModernHotels')}
               </span>
             </h2>
             <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              Advanced security and convenience features that delight guests and simplify operations
+              {t('mobileKey.featuresSubtext')}
             </p>
           </motion.div>
 
@@ -338,18 +285,18 @@ export default function MobileKeySystemPage() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-                Why Mobile Keys
+                {t('mobileKey.whyMobileKeys')}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1] mb-5">
-                Go beyond{' '}
+                {t('mobileKey.beyondHeading')}{' '}
                 <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                  the key card
+                  {t('mobileKey.beyondKeyCard')}
                 </span>
               </h2>
               <p className="text-lg text-slate-500 leading-relaxed mb-8 max-w-md">
-                Discover why leading hotels are replacing plastic key cards with secure, instant mobile access that guests love.
+                {t('mobileKey.beyondSubtext')}
               </p>
-              <PrimaryButton href="/contact-us" label="Get started" icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
+              <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
             </motion.div>
 
             {/* ── Right: benefits glass card ── */}
@@ -388,7 +335,7 @@ export default function MobileKeySystemPage() {
 
                 {/* Stat chips */}
                 <div className="mt-8 pt-6 border-t border-slate-100 grid grid-cols-3 gap-3 text-center">
-                  {[['100%', 'Paperless'], ['AES-256', 'Encrypted'], ['24 / 7', 'Active']].map(([val, label]) => (
+                  {[['100%', t('mobileKey.paperless')], ['AES-256', t('mobileKey.encrypted')], ['24 / 7', t('mobileKey.active')]].map(([val, label]) => (
                     <div
                       key={label}
                       className="rounded-xl bg-slate-50/90 border border-slate-100 py-3 px-2 hover:border-[#007aec]/20 hover:bg-[#007aec]/4 transition-colors duration-200"

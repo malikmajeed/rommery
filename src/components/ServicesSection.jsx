@@ -12,62 +12,58 @@ import {
   Headphones,
   RefreshCw,
   ArrowRight,
-  Wifi,
-  Shield,
   Zap,
 } from "lucide-react";
 import { PrimaryButton } from "./ui/PrimaryButton";
-
-const services = [
-  {
-    icon: Smartphone,
-    title: "Digital Check-In & Check-Out",
-    description: "Allow guests to check in and check out without the front desk.",
-    features: ["Online self check-in", "Digital key generation", "Automated check-out", "Reduced front desk workload"],
-    benefits: ["24/7 guest access", "Lower staffing costs", "Better guest satisfaction"],
-    accent: "from-blue-500/10 to-primary/5",
-    stat: "3x faster",
-    statLabel: "check-in speed",
-  },
-  {
-    icon: Lock,
-    title: "Smart Lock Integration with PMS",
-    description: "Connect smart locks directly with your Property Management System.",
-    features: ["Automatic key creation after booking", "Remote door access control", "Real-time access management"],
-    benefits: ["No physical keys", "Higher security", "Fully automated guest access"],
-    accent: "from-emerald-500/10 to-primary/5",
-    stat: "100%",
-    statLabel: "keyless access",
-  },
-  {
-    icon: Monitor,
-    title: "Self-Service Kiosk Integration",
-    description: "Install a self-service kiosk for automated check-in at the property.",
-    features: ["Passport/ID scanning", "Payment processing", "Key or access code issuance"],
-    benefits: ["No front desk queues", "24/7 automated reception"],
-    accent: "from-violet-500/10 to-primary/5",
-    stat: "24/7",
-    statLabel: "automated reception",
-  },
-  {
-    icon: SmartphoneIcon,
-    title: "Mobile Key System",
-    description: "Secure smartphone-based room access using encrypted keys that work seamlessly with your smart lock.",
-    features: [
-      "Seamless integration with smart locks",
-      "Encrypted mobile keys",
-      "Real-time access management",
-      "Guest-friendly app for check-in and check-out",
-    ],
-    benefits: ["No physical key cards", "Convenient access for guests", "Remote key sharing"],
-    accent: "from-orange-500/10 to-primary/5",
-    stat: "256-bit",
-    statLabel: "encryption",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const services = [
+    {
+      icon: Smartphone,
+      title: t("services.digitalCheckInTitle"),
+      description: t("services.digitalCheckInDesc"),
+      features: t("services.digitalCheckInFeatures") || [],
+      benefits: t("services.digitalCheckInBenefits") || [],
+      accent: "from-blue-500/10 to-primary/5",
+      stat: t("services.digitalCheckInStat"),
+      statLabel: t("services.digitalCheckInStatLabel"),
+    },
+    {
+      icon: Lock,
+      title: t("services.smartLockTitle"),
+      description: t("services.smartLockDesc"),
+      features: t("services.smartLockFeatures") || [],
+      benefits: t("services.smartLockBenefits") || [],
+      accent: "from-emerald-500/10 to-primary/5",
+      stat: t("services.smartLockStat"),
+      statLabel: t("services.smartLockStatLabel"),
+    },
+    {
+      icon: Monitor,
+      title: t("services.kioskTitle"),
+      description: t("services.kioskDesc"),
+      features: t("services.kioskFeatures") || [],
+      benefits: t("services.kioskBenefits") || [],
+      accent: "from-violet-500/10 to-primary/5",
+      stat: t("services.kioskStat"),
+      statLabel: t("services.kioskStatLabel"),
+    },
+    {
+      icon: SmartphoneIcon,
+      title: t("services.mobileKeyTitle"),
+      description: t("services.mobileKeyDesc"),
+      features: t("services.mobileKeyFeatures") || [],
+      benefits: t("services.mobileKeyBenefits") || [],
+      accent: "from-orange-500/10 to-primary/5",
+      stat: t("services.mobileKeyStat"),
+      statLabel: t("services.mobileKeyStatLabel"),
+    },
+  ];
+
   const Service3Icon = services[3].icon;
 
   return (
@@ -82,10 +78,10 @@ const ServicesSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mt-3">
-            Everything You Need to Go Digital
+            {t("services.heading")}
           </h2>
           <p className="text-lg/6 text-neutral-600 mt-4 max-w-xl mx-auto px-1">
-            Streamline operations, delight guests, and reduce costs with our comprehensive hospitality solutions.
+            {t("services.subheading")}
           </p>
         </motion.div>
 
@@ -147,7 +143,7 @@ const ServicesSection = () => {
 
               {/* Right: benefits */}
               <div className="flex sm:flex-col justify-start gap-2 px-6 py-5 sm:py-6 sm:w-52 border-t sm:border-t-0 sm:border-l border-neutral-100 shrink-0">
-                <div className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-0 sm:mb-1 hidden sm:block">Benefits</div>
+                <div className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-0 sm:mb-1 hidden sm:block">{t("services.benefits")}</div>
                 {services[3].benefits.map((b) => (
                   <span
                     key={b}
@@ -184,17 +180,17 @@ const ServicesSection = () => {
               <div className="flex-1 text-left max-w-md">
                 <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 text-xs font-semibold text-white/80 mb-3 border border-white/20">
                   <Zap className="w-3.5 h-3.5" />
-                  All-in-one platform
+                  {t("services.allInOne")}
                 </div>
                 <h3 className="text-2xl sm:text-2xl font-bold text-white mb-2 leading-tight">
-                  Complete PMS Solution
+                  {t("services.completePmsTitle")}
                 </h3>
                 <p className="text-md/6 text-primary-foreground/80 mb-5">
-                  Automate your entire hospitality operation with smart locks, digital check-ins, card check-ins, and seamless PMS integrations—all from one platform.
+                  {t("services.completePmsDesc")}
                 </p>
                 <PrimaryButton
                   href="/contact-us"
-                  label="Contact Now!"
+                  label={t("services.contactNow")}
                   icon={<ArrowRight />}
                   className="!text-white !border-white"
                 />
@@ -203,9 +199,9 @@ const ServicesSection = () => {
               {/* Right: 3 feature pillars */}
               <div className="flex flex-row sm:flex-col gap-3 shrink-0">
                 {[
-                  { icon: Lock, label: "Smart lock integration" },
-                  { icon: Monitor, label: "PMS integration" },
-                  { icon: Smartphone, label: "Kiosk integration" },
+                  { icon: Lock, label: t("services.smartLockIntegration") },
+                  { icon: Monitor, label: t("services.pmsIntegration") },
+                  { icon: Smartphone, label: t("services.kioskIntegration") },
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
@@ -230,9 +226,9 @@ const ServicesSection = () => {
           className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12"
         >
           {[
-            { icon: Cloud, label: "Cloud based" },
-            { icon: Headphones, label: "24/7 support" },
-            { icon: RefreshCw, label: "Regular updated" },
+            { icon: Cloud, label: t("services.cloudBased") },
+            { icon: Headphones, label: t("services.support24_7") },
+            { icon: RefreshCw, label: t("services.regularUpdated") },
           ].map(({ icon: Icon, label }) => (
             <span
               key={label}
