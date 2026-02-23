@@ -39,7 +39,7 @@ export const Footer = () => {
             className="lg:col-span-1"
           >
             <Link href="/" className="text-xl font-bold tracking-tight text-neutral-900">
-              <img src="./rommery-logo-black.png" alt="Rommery" className="h-20" />
+              <img src="./Frame 4.png" alt="Rommery" className="h-20" />
             </Link>
             <p className="mt-3 text-sm text-neutral-600 max-w-xs">
               {t('footer.tagline')}

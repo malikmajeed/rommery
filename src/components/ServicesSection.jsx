@@ -17,10 +17,10 @@ import { PrimaryButton } from "./ui/PrimaryButton";
 import { useLanguage } from "@/context/LanguageContext";
 
 const serviceImages = [
-  "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800&q=80",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+  "./images/digital-checking.png",
+  "./images/smart-lock.png",
+  "./images/kiosk.png",
+  "./images/mobile-key.png",
 ];
 
 const serviceHrefs = ["/digital-checkin", "/mobile-key-system", "/smart-pricing-engine", "/complete-pms-solution"];
@@ -168,11 +168,11 @@ const ServicesSection = () => {
               />
             </div>
             {/* Right: image */}
-            <div className="relative h-64 lg:h-auto lg:min-h-[380px]">
+            <div className="relative h-64  flex items-center justify-center lg:h-auto lg:min-h-[380px]">
               <img
-                src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80"
+                src="./smart-pms-dashboard.png"
                 alt=""
-                className="absolute p-15 inset-0 w-full h-full object-cover object-center"
+                className=""
               />
             </div>
           </div>

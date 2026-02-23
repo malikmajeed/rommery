@@ -113,7 +113,7 @@ export default function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 sm:mt-20 rounded-2xl bg-gradient-to-r from-primary to-secondary py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
+          className="mt-16 sm:mt-20 bg-white py-12 items-center justify-center flex sm:py-16 px-6 sm:px-8"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             <motion.div
@@ -122,10 +122,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+              <p className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight">
                 <StatCounter end={500} suffix="+" duration={1.5} delay={0.2} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.hotelsWorldwide')}</p>
+              <p className="mt-1 text-lg/6 text-neutral-600">{t('hero.hotelsWorldwide')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -133,10 +133,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+              <p className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight">
                 <StatCounter end={98} suffix="%" duration={1.2} delay={0.35} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.guestSatisfaction')}</p>
+              <p className="mt-1 text-lg/6 text-neutral-600">{t('hero.guestSatisfaction')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -144,10 +144,10 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">
+              <p className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight">
                 <StatCounter end={60} suffix="%" duration={1.2} delay={0.5} inView={statsInView} />
               </p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.fasterCheckIn')}</p>
+              <p className="mt-1 text-lg/6 text-neutral-600">{t('hero.fasterCheckIn')}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -155,8 +155,8 @@ export default function HeroSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.4 }}
             >
-              <p className="text-3xl sm:text-5xl font-bold text-primary-foreground tracking-tight">24/7</p>
-              <p className="mt-1 text-lg/6 text-primary-foreground/80">{t('hero.supportAvailable')}</p>
+              <p className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tight">24/7</p>
+              <p className="mt-1 text-lg/6 text-neutral-600">{t('hero.supportAvailable')}</p>
             </motion.div>
           </div>
         </motion.div>
