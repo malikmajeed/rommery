@@ -36,7 +36,7 @@ export const Header = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - left */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <img src="./Frame 34.png" alt="Rommery" className="h-10" />
+          <img src="./Frame 4.png" alt="Rommery" className="h-10" />
         </Link>
 
         {/* Desktop: center nav */}
