@@ -1,136 +1,113 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { Building2, Home, Clock } from 'lucide-react';
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.12, duration: 0.5, ease: 'easeOut' },
-  }),
-};
+const CARD_IMAGES = [
+  'https://www.triparound.com/wp-content/uploads/2021/11/pexels-photo-1488327.jpg',
+  'https://www.vrbo.com/vacation-ideas/wp-content/uploads/2023/06/vacation-rentals.jpg',
+  'https://images.squarespace-cdn.com/content/v1/6313226a88427102e3185a6d/1667057085115-WF2K79ONABIUVXY5BJUP/Two+MacDonnell+Road+Apartment+1.jpg',
+  'https://static.tildacdn.com/tild3961-6430-4334-b438-376231626333/StRegis_Muscat.jpg',
+];
 
-export const WhoWeServeSection = () => {
+const CARD_ICONS = [Building2, Home, Clock, Building2];
+
+export function WhoWeServeSection() {
   const { t } = useLanguage();
+  const [expanded, setExpanded] = useState({});
+
+  const cards = [
+    { titleKey: 'boutiqueHotels', descKey: 'boutiqueDesc' },
+    { titleKey: 'vacationRentals', descKey: 'vacationDesc' },
+    { titleKey: 'servicedApartments', descKey: 'servicedDesc' },
+    { titleKey: 'hotelChainsResorts', descKey: 'hotelChainsDesc' },
+  ].map((c) => ({
+    ...c,
+    title: t(`whoWeServe.${c.titleKey}`),
+    desc: t(`whoWeServe.${c.descKey}`),
+  }));
+
+  const toggleExpand = (i) => {
+    setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
+
   return (
-    <section id="who-we-serve" className="relative py-24 sm:py-32 bg-background gradient-dots-subtle">
-      <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-16"
-        >
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+    <section id="who-we-serve" className="py-16 sm:py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900">
             {t('whoWeServe.heading')}
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg/6 text-neutral-600">
+          <p className="mt-3 text-lg text-neutral-600 max-w-2xl mx-auto">
             {t('whoWeServe.subheading')}
           </p>
-        </motion.div>
+        </div>
 
-        <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-          {/* Card 1 - Boutique Hotels */}
-          <motion.div
-            custom={0}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="group relative lg:row-span-2 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="absolute inset-px rounded-2xl lg:rounded-l-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl lg:rounded-l-[1.25rem] border border-transparent">
-              <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.boutiqueHotels')}</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.boutiqueDesc')}</p>
-              </div>
-              <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
-                <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-2xl shadow-xl transition-transform duration-300 group-hover:scale-[1.02]">
-                  <img src="https://www.triparound.com/wp-content/uploads/2021/11/pexels-photo-1488327.jpg" alt="" className="size-full object-cover object-top" />
-                </div>
-              </div>
-            </div>
-            <div className="pointer-events-none absolute inset-px rounded-2xl lg:rounded-l-[1.25rem] ring-1 ring-black/5" aria-hidden />
-          </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card, i) => {
+            const Icon = CARD_ICONS[i];
+            const isExpanded = expanded[i];
+            const desc = card.desc;
+            const isLong = desc && desc.length > 120;
 
-          {/* Card 2 - Vacation Rentals */}
-          <motion.div
-            custom={1}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="group relative max-lg:row-start-1 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="absolute inset-px rounded-2xl max-lg:rounded-t-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl max-lg:rounded-t-[1.25rem]">
-              <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.vacationRentals')}</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.vacationDesc')}</p>
-              </div>
-              <div className="px-5 pt-10">
-                <img className="rounded-t-xl w-full h-auto object-cover max-lg:max-w-xs transition-transform duration-300 group-hover:scale-[1.02]" src="https://www.vrbo.com/vacation-ideas/wp-content/uploads/2023/06/vacation-rentals.jpg" alt="Vacation rentals" />
-              </div>
-            </div>
-            <div className="pointer-events-none absolute inset-px rounded-2xl max-lg:rounded-t-[1.25rem] ring-1 ring-black/5" aria-hidden />
-          </motion.div>
-
-          {/* Card 3 - Serviced Apartments */}
-          <motion.div
-            custom={2}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="group relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="absolute inset-px rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
-              <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.servicedApartments')}</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80  max-lg:text-center">{t('whoWeServe.servicedDesc')}</p>
-              </div>
-              <div className="px-5 pt-10">
-                <img className="rounded-t-xl w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" src="https://images.squarespace-cdn.com/content/v1/6313226a88427102e3185a6d/1667057085115-WF2K79ONABIUVXY5BJUP/Two+MacDonnell+Road+Apartment+1.jpg" alt="Serviced apartments" />
-              </div>
-            </div>
-            <div className="pointer-events-none absolute inset-px rounded-2xl ring-1 ring-black/5" aria-hidden />
-          </motion.div>
-
-          {/* Card 4 - Hotel Chains & Resorts */}
-          <motion.div
-            custom={3}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="group relative lg:row-span-2 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="absolute inset-px rounded-2xl max-lg:rounded-b-[1.25rem] lg:rounded-r-[1.25rem] shadow-lg group-hover:shadow-xl transition-shadow duration-300" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-2xl max-lg:rounded-b-[1.25rem] lg:rounded-r-[1.25rem]">
-              <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold tracking-tight text-primary max-lg:text-center">{t('whoWeServe.hotelChainsResorts')}</p>
-                <p className="mt-2 max-w-lg text-md/6 text-black/80 max-lg:text-center">{t('whoWeServe.hotelChainsDesc')}</p>
-              </div>
-              <div className="relative min-h-[220px] sm:min-h-[280px] w-full grow">
-                <div className="absolute inset-0 sm:top-10 sm:right-0 sm:bottom-0 sm:left-10 overflow-hidden rounded-tl-xl shadow-xl outline outline-white/10 transition-transform duration-300 group-hover:scale-[1.02]">
+            return (
+              <div
+                key={card.titleKey}
+                className="bg-white rounded-xl shadow-md border border-neutral-100 overflow-hidden flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    className="h-full w-full object-cover"
-                    src="https://static.tildacdn.com/tild3961-6430-4334-b438-376231626333/StRegis_Muscat.jpg"
-                    alt="Hotel exterior pool and bar"
+                    src={CARD_IMAGES[i]}
+                    alt=""
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
+
+                {/* Content: icon (overlaps image via negative margin) + title + description */}
+                <div className="relative px-5 pb-5 pt-0 text-center flex flex-col flex-1">
+                  {/* Icon overlay: pulled up so it sits on top of image and content */}
+                  <div className="flex justify-center -mt-6 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-white border-2 border-primary flex items-center justify-center shadow-md">
+                      <Icon className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 mb-3">
+                    {card.title}
+                  </h3>
+                  <div className="flex-1">
+                    <p
+                      className="text-sm text-neutral-600 leading-relaxed"
+                      style={
+                        isLong && !isExpanded
+                          ? {
+                              display: '-webkit-box',
+                              WebkitLineClamp: 3,
+                              WebkitBoxOrient: 'vertical',
+                              overflow: 'hidden',
+                            }
+                          : undefined
+                      }
+                    >
+                      {desc}
+                    </p>
+                    {isLong && (
+                      <button
+                        type="button"
+                        onClick={() => toggleExpand(i)}
+                        className="mt-2 text-sm font-medium text-primary hover:underline"
+                      >
+                        {isExpanded ? t('common.readLess') : t('common.readMore')}
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="pointer-events-none absolute inset-px rounded-2xl max-lg:rounded-b-[1.25rem] lg:rounded-r-[1.25rem] ring-1 ring-black/5" aria-hidden />
-          </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
-};
+}
