@@ -5,8 +5,8 @@
   /* Dark theme - charcoal / dark grey */
   --background: #FAF9F6;
   --foreground: #f0f0f2;
-  --primary: #007aec;
-  --secondary: #8FE5C1;
+  --primary: #10083a;
+  --secondary: #000000;
   --primary-foreground: #ffffff;
   --accent: #8FE5C1;
   --accent-foreground: #0f172a;
@@ -15,8 +15,8 @@
   --muted-foreground: #a1a1a6;  
   --border: #3a3a3c;
   --card: #d4d4d4;
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: Arial;
+  --font-heading: 'Poppins';
+  --font-body: 'Arial';
 }
 
 @theme inline {
@@ -43,8 +43,8 @@
     --background: #FAF9F6;
     --foreground: #f0f0f2;
     
-  --secondary: #66c49d;
-    --muted: #252528;
+  --secondary: #000000;
+    --muted: #000000;
     --muted-foreground: #a1a1a6;
     --border: #3a3a3c;
     --card: #252528;
@@ -141,7 +141,7 @@ body {
 
 /* Animated snake border - default: low-opacity border, hover: snake */
 .btn-revolving-border {
-  --border-radius: 9999px;
+  --border-radius: 0.2rem;
   --border-width: 2px;
   --angle: 0deg;
 
@@ -207,7 +207,7 @@ body {
 
 /* Card snake border - same effect for service cards */
 .card-snake-border {
-  --card-border-radius: 1rem;
+  --card-border-radius: 0.2rem;
   --card-border-width: 4px;
   --angle: 0deg;
   position: relative;

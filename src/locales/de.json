@@ -100,7 +100,10 @@
   "common": {
     "getStarted": "Jetzt starten",
     "home": "Startseite",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Mehr lesen",
+    "readLess": "Weniger"
   },
   "contact": {
     "breadcrumbContact": "Kontakt",
