@@ -72,9 +72,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
-              <span className="font-light text-black/80 text-2xl">{t('hero.title1')}</span>
-              <br />
-              <span className="font-bold text-primary"> {t('hero.title2')}</span>
+              <span className="font-bold  text-primary">{t('hero.title1')}</span>
+
             </h1>
 
             <p className="font-body text-black/80 mt-4 sm:mt-6 text-md/6  max-w-2xl">
@@ -82,79 +81,28 @@ export default function HeroSection() {
             </p>
 
                       <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                          <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<ArrowRight />} className="text-white bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" />
-                          <SecondaryButton href="/contact-us" label={t('hero.liveDemo')} icon={<Play />} className="text-black" />
+                          <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<ArrowRight />} className="text-white bg-primary " />
+                          <SecondaryButton href="/contact-us" label={t('hero.liveDemo')} icon={<Play />} noIconRotate className="text-black border-transparent border-1 hover:border-primary hover:border-1" />
                       </div>
 
           </motion.div>
 
-          {/* RIGHT IMAGES */}
+          {/* RIGHT: single hero image */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             className="relative overflow-hidden mt-8 lg:mt-0"
           >
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 max-w-full md:max-w-2xl lg:max-w-5xl mx-auto lg:ml-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.35 }}
-                className="flex items-center justify-center"
-              >
-                <img
-                  src="https://img.freepik.com/free-photo/full-shot-man-carrying-baggage_23-2149963942.jpg?semt=ais_user_personalization&w=740&q=80"
-                  className="rounded-lg sm:rounded-md shadow-lg sm:shadow-xl w-48 h-72  object-cover"
-                  alt="Team collaboration"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.45 }}
-                className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6"
-              >
-                <img
-                  src="https://www.gokeyless.com/cdn/shop/articles/iStock-1075299532_630x.jpg?v=1698235474"
-                  className="rounded-lg sm:rounded-md shadow-lg sm:shadow-xl w-48 h-72  object-cover"
-                  alt="Person with laptop"
-                />
-                <img
-                  src="https://www.evoke-creative.com/hubfs/Feature%20image%20(3)%20(1).jpg"
-                  className="rounded-lg sm:rounded-md shadow-lg sm:shadow-xl w-48 h-72  object-cover"
-                  alt="Person working"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.55 }}
-                className="flex flex-col items-start gap-2 sm:gap-3 md:gap-4 lg:gap-6 relative"
-              >
-              <div className="w-48 lg:overflow-hidden">
-
-                  <img
-                    src="https://www.synolock.com/wp-content/uploads/2024/11/hotel-locks-orbita.jpg"
-                    className="rounded-lg shadow-xl w-48 h-72 object-cover lg:translate-x-[40px]"
-
-                    alt="Open plan office"
-                  />
-                </div>
-                <div className="w-48 lg:overflow-hidden">
-                  <img
-                    src="https://cdn.create.vista.com/api/media/small/125640844/stock-photo-guests-getting-key-card-in-hotel"
-                    className="rounded-lg shadow-xl w-48 h-72 object-cover lg:translate-x-[40px]"
-
-                    alt="Meeting with whiteboard"
-                  />
-                </div>
-              </motion.div>
+            <div className="relative w-full max-w-2xl mx-auto lg:ml-auto lg:max-w-none">
+              <img
+                src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200&q=80"
+                className="w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] object-cover object-center rounded-xl shadow-xl"
+                alt="Modern hotel lobby"
+              />
             </div>
-
-            {/* Soft Gradient Background */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-primary/10 via-background to-accent/20 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-60" />
+            {/* Soft gradient accent */}
+            <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-primary/10 via-background to-accent/20 rounded-2xl blur-2xl opacity-50 pointer-events-none" />
           </motion.div>
         </div>
 
