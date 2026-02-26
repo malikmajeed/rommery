@@ -111,7 +111,8 @@ export const Header = () => {
           >
             {locale === 'en' ? 'DE' : 'EN'}
           </button>
-          <PrimaryButton href="/contact-us" label={t('header.contactNow')} icon={<Phone strokeWidth={1} />} noIconRotate className="text-black noIconRotate" />
+       
+          <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<Phone strokeWidth={1} />} noIconRotate className="text-white bg-primary " />
         </div>
 
         {/* Mobile: language + contact + menu */}
