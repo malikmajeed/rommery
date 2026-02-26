@@ -115,7 +115,7 @@ export default function SmartPricingEnginePage() {
                   key={s.key}
                   className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden flex"
                 >
-                  <div className={`w-1 sm:w-1.5 shrink-0 ${s.stripeColor}`} aria-hidden />
+                  <div className={`w-1 sm:w-1.5 shrink-0 bg-primary`} aria-hidden />
                   <div className="p-5 flex items-start gap-4 flex-1">
                     <div className="w-9 h-9 shrink-0 rounded-lg bg-neutral-100 flex items-center justify-center">
                       <FactorIcon icon={s.icon} className={`w-4 h-4 ${s.iconColor}`} strokeWidth={1.75} />
