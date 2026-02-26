@@ -10,10 +10,10 @@ import { useLanguage } from '@/context/LanguageContext';
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80';
 
 const contactInfoKeys = [
-  { icon: Phone, labelKey: 'phone', value: '+49 176 41629153', subKey: 'callAnytime', href: 'tel:+4917641629153', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3' },
-  { icon: Mail, labelKey: 'email', value: 'info@crito.io', subKey: 'sendEmail', href: 'mailto:info@crito.io', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5' },
-  { icon: HeadphonesIcon, labelKey: 'support', valueKey: 'available24_7', subKey: 'weAreHere', href: null, iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10' },
-  { icon: Clock, labelKey: 'responseTime', valueKey: 'within24Hours', subKey: 'quickResponse', href: null, iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'from-[#8FE5C1]/15 to-[#007aec]/6' },
+  { icon: Phone, labelKey: 'phone', value: '+49 176 41629153', subKey: 'callAnytime', href: 'tel:+4917641629153', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
+  { icon: Mail, labelKey: 'email', value: 'info@roommery.io', subKey: 'sendEmail', href: 'mailto:info@roommery.io', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', hoverGrad: 'bg-primary/10' },
+  { icon: HeadphonesIcon, labelKey: 'support', valueKey: 'available24_7', subKey: 'weAreHere', href: null, iconBg: 'bg-primary/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
+  { icon: Clock, labelKey: 'responseTime', valueKey: 'within24Hours', subKey: 'quickResponse', href: null, iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
 ];
 
 const cardVariants = {
@@ -65,7 +65,7 @@ export default function ContactPage() {
       />
 
       {/* ───────────── CONTACT INFO CARDS ───────────── */}
-      <section className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-white to-slate-50/70">
+      <section className="relative py-20 sm:py-28 overflow-hidden bg-primary/5">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-48 -right-48 w-[680px] h-[680px] rounded-full bg-[#007aec]/7 blur-[110px]" />
           <div className="absolute -bottom-48 -left-24 w-[520px] h-[520px] rounded-full bg-[#8FE5C1]/15 blur-[90px]" />
@@ -90,7 +90,7 @@ export default function ContactPage() {
               {t('contact.contactInformation')}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
-              <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
+              <span className="text-primary">
                 {t('contact.waysToReachUs')}
               </span>
             </h2>
@@ -115,7 +115,7 @@ export default function ContactPage() {
                     href={item.href ?? undefined}
                     className={`group relative ${glassCard} p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_14px_44px_rgba(0,122,236,0.13)] overflow-hidden block`}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.hoverGrad} opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl`} />
+                    <div className={`absolute inset-0 ${item.hoverGrad} opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl`} />
 
                     <div className="relative">
                       <div className={`w-11 h-11 rounded-xl ${item.iconBg} flex items-center justify-center mb-4`}>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                       <p className="text-[13px] text-slate-500">{item.sub}</p>
                     </div>
 
-                    <div className="absolute bottom-0 left-5 right-5 h-[2px] rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    <div className="absolute bottom-0 left-5 right-5 h-[2px] rounded-full bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   </Wrapper>
                 </motion.div>
               );
@@ -142,7 +142,7 @@ export default function ContactPage() {
 
       {/* ───────────── CONTACT FORM ───────────── */}
       <section className="relative py-20 sm:py-28 overflow-hidden bg-white border-t border-slate-100/80">
-        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-gradient-to-b from-[#007aec]/5 to-transparent blur-3xl" />
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-primary/10 blur-3xl" />
         <div
           className="pointer-events-none absolute inset-0 opacity-30"
           style={{
@@ -167,7 +167,7 @@ export default function ContactPage() {
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-4">
                 {t('contact.letsStart')}{' '}
-                <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
+                <span className="text-primary">
                   {t('contact.conversation')}
                 </span>
               </h2>
@@ -179,7 +179,7 @@ export default function ContactPage() {
               <div className="space-y-3">
                 {[
                   { icon: Phone, label: '+49 176 41629153', href: 'tel:+4917641629153' },
-                  { icon: Mail, label: 'info@crito.io', href: 'mailto:info@crito.io' },
+                  { icon: Mail, label: 'info@roommery.io', href: 'mailto:info@roommery.io' },
                 ].map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}
@@ -206,11 +206,11 @@ export default function ContactPage() {
               className="lg:col-span-3 relative"
             >
               {/* Outer glow */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#007aec]/12 to-[#8FE5C1]/12 blur-2xl scale-105 -z-10" />
+              <div className="absolute inset-0 rounded-3xl bg-primary/10 blur-2xl scale-105 -z-10" />
 
               <div className="rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_8px_48px_rgba(0,122,236,0.10),0_2px_4px_rgba(0,0,0,0.04)] p-8 sm:p-10">
-                {/* Top gradient stripe */}
-                <div className="h-1 w-full rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] mb-8" />
+                {/* Top stripe */}
+                <div className="h-1 w-full rounded-full bg-primary mb-8" />
 
                 {submitted ? (
                   <motion.div
@@ -320,7 +320,8 @@ export default function ContactPage() {
                       type="submit"
                       label={t('contact.sendMessageButton')}
                       icon={<Send className="w-5 h-5" strokeWidth={2} />}
-                      className="w-full font-bold  bg-gradient-to-r from-primary to-secondary hover:from-muted-foreground hover:to-primary" noIconRotate
+                      className="w-full font-bold bg-primary hover:bg-primary/90"
+                      noIconRotate
                     />
                   </form>
                 )}
