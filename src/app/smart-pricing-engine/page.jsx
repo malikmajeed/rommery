@@ -1,75 +1,61 @@
 'use client';
-import { SecondaryButton } from '@/components/ui/SecondaryButton';
-import { motion } from 'framer-motion';
+
+import Link from 'next/link';
 import {
   TrendingUp,
-  Target,
+  BarChart3,
+  Clock,
   Zap,
-  Check,
   DollarSign,
-  Percent,
-  Cog,
+  CalendarClock,
+  ArrowRight,
 } from 'lucide-react';
 import { PageHeroSection } from '@/components/ui/PageHeroSection';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useLanguage } from '@/context/LanguageContext';
 
 const HERO_IMAGE =
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdDgYciWcwWH05NgsVE8a3wOBP4tq7HRXzAw&s';
+  './images/smart-pricing-bg.png';
 
-const pricingIntelligenceKeys = [
-  { icon: TrendingUp, key: 'demandForecasting', subKey: 'demand', hoverGrad: 'from-[#007aec]/8 to-[#007aec]/3', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]' },
-  { icon: Target, key: 'competitorAnalysis', subKey: 'competitor', hoverGrad: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600' },
-  { icon: Zap, key: 'dynamicAdjustments', subKey: 'dynamic', hoverGrad: 'from-[#007aec]/8 to-[#8FE5C1]/10', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]' },
+const factorKeys = [
+  { icon: TrendingUp, key: 'demandForecasting', descKey: 'demandCardDesc', iconColor: 'text-blue-500', iconBg: 'bg-blue-100' },
+  { icon: BarChart3, key: 'competitorAnalysis', descKey: 'competitorCardDesc', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100' },
+  { icon: Clock, key: 'dynamicAdjustments', descKey: 'dynamicCardDesc', iconColor: 'text-violet-500', iconBg: 'bg-violet-100' },
 ];
 
 const strategyKeys = [
-  { key: 'highDemand', color: 'from-[#007aec]/12 to-[#007aec]/4', dot: 'bg-[#007aec]' },
-  { key: 'lowOccupancy', color: 'from-[#8FE5C1]/20 to-[#8FE5C1]/5', dot: 'bg-emerald-400' },
-  { key: 'lastMinute', color: 'from-[#007aec]/8 to-[#8FE5C1]/10', dot: 'bg-[#007aec]' },
-  { key: 'extendedStays', color: 'from-[#8FE5C1]/15 to-[#007aec]/6', dot: 'bg-emerald-400' },
+  { icon: Zap, key: 'highDemand', descKey: 'highDemandCardDesc', stripeColor: 'bg-primary', iconColor: 'text-primary' },
+  { icon: DollarSign, key: 'lowOccupancy', descKey: 'lowOccupancyCardDesc', stripeColor: 'bg-emerald-500', iconColor: 'text-emerald-600' },
+  { icon: Clock, key: 'lastMinute', descKey: 'lastMinuteCardDesc', stripeColor: 'bg-violet-500', iconColor: 'text-violet-600' },
+  { icon: CalendarClock, key: 'extendedStays', descKey: 'extendedStaysCardDesc', stripeColor: 'bg-emerald-400', iconColor: 'text-emerald-600' },
 ];
 
-const revenueImpactKeys = [
-  { icon: DollarSign, stat: '+25–40%', key: 'revenueIncrease', subKey: 'revparImprovement', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', statColor: 'from-[#007aec] to-[#0099ff]' },
-  { icon: Percent, stat: '95%+', key: 'optimalOccupancy', subKey: 'balanceRateOccupancy', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', statColor: 'from-emerald-500 to-[#8FE5C1]' },
-  { icon: Cog, stat: '100%', key: 'automation', subKey: 'noManualRate', iconBg: 'bg-gradient-to-br from-[#007aec]/10 to-[#8FE5C1]/15', iconColor: 'text-[#007aec]', statColor: 'from-[#007aec] to-[#8FE5C1]' },
+const revenueStats = [
+  { stat: '+25-40%', titleKey: 'revparImprovement', descKey: 'revparStatDesc' },
+  { stat: '95%+', titleKey: 'optimalOccupancyBalance', descKey: 'optimalOccupancyStatDesc' },
+  { stat: '100%', titleKey: 'automation', descKey: 'automationStatDesc' },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.09, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
-
-function StepIcon({ icon: Icon, className, strokeWidth }) {
+function FactorIcon({ icon: Icon, className, strokeWidth }) {
   return <Icon className={className} strokeWidth={strokeWidth} />;
 }
 
-const glassCard =
-  'rounded-2xl bg-white/70 backdrop-blur-xl border border-white/90 shadow-[0_4px_24px_rgba(0,122,236,0.07),0_1px_2px_rgba(0,0,0,0.04)]';
-
 export default function SmartPricingEnginePage() {
   const { t } = useLanguage();
-  const pricingIntelligence = pricingIntelligenceKeys.map((item) => ({
-    ...item,
-    title: t(`smartPricing.${item.key}`),
-    subtitle: t(`smartPricing.${item.subKey}Subtitle`),
-    points: Array.isArray(t(`smartPricing.${item.subKey}Points`)) ? t(`smartPricing.${item.subKey}Points`) : [],
+  const factors = factorKeys.map((f) => ({
+    ...f,
+    title: t(`smartPricing.${f.key}`),
+    desc: t(`smartPricing.${f.descKey}`),
   }));
   const strategies = strategyKeys.map((s) => ({
     ...s,
-    scenario: t(`smartPricing.${s.key}`),
-    action: t(`smartPricing.${s.key}Action`),
-    result: t(`smartPricing.${s.key}Result`),
-    example: t(`smartPricing.${s.key}Example`),
+    title: t(`smartPricing.${s.key}`),
+    desc: t(`smartPricing.${s.descKey}`),
   }));
-  const revenueImpact = revenueImpactKeys.map((item) => ({
-    ...item,
-    title: t(`smartPricing.${item.key}`),
-    sub: t(`smartPricing.${item.subKey}`),
+  const stats = revenueStats.map((s) => ({
+    ...s,
+    title: t(`smartPricing.${s.titleKey}`),
+    desc: t(`smartPricing.${s.descKey}`),
   }));
 
   return (
@@ -79,273 +65,105 @@ export default function SmartPricingEnginePage() {
         title={t('smartPricing.title')}
         image={HERO_IMAGE}
         description={t('smartPricing.description')}
-      />
+        imageAlt="Smart pricing"
+      >
+        <PrimaryButton href="/contact-us" label={t('hero.getStarted')} icon={<ArrowRight className="w-4 h-4" />} className="text-white bg-primary" />
+      </PageHeroSection>
 
-      {/* ───────────── PRICING INTELLIGENCE ───────────── */}
-      <section className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-white to-slate-50/70">
-        {/* Ambient orbs */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-48 -right-48 w-[680px] h-[680px] rounded-full bg-[#007aec]/7 blur-[110px]" />
-          <div className="absolute -bottom-48 -left-24 w-[520px] h-[520px] rounded-full bg-[#8FE5C1]/15 blur-[90px]" />
-          <div
-            className="absolute inset-0 opacity-[0.35]"
-            style={{
-              backgroundImage: 'radial-gradient(circle, #007aec1a 1px, transparent 1px)',
-              backgroundSize: '36px 36px',
-            }}
-          />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-14 sm:mb-20"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              {t('smartPricing.pricingIntelligence')}
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1] max-w-3xl mx-auto">
-              <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                {t('smartPricing.pricingHeadline')}
-              </span>
+      {/* ── Intelligence Factors: 3 cards in a row, circular icon + title + description ── */}
+      <section className="py-16 sm:py-24 bg-neutral-50/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900">
+              {t('smartPricing.intelligenceFactors')}
             </h2>
-            <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              {t('smartPricing.pricingSubtext')}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pricingIntelligence.map((item, i) => (
-              <motion.div
-                key={item.title}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className={`group relative ${glassCard} p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_52px_rgba(0,122,236,0.14)] overflow-hidden`}
-              >
-                {/* Hover bg tint */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.hoverGrad} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}
-                />
-
-                <div className="relative">
-                  <div
-                    className={`w-11 h-11 rounded-xl ${item.iconBg} flex items-center justify-center mb-5`}
-                  >
-                    <StepIcon
-                      icon={item.icon}
-                      className={`w-5 h-5 ${item.iconColor}`}
-                      strokeWidth={1.75}
-                    />
-                  </div>
-
-                  <h3 className="text-[16px] font-semibold text-slate-800 mb-1.5 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{item.subtitle}</p>
-
-                  <ul className="space-y-2.5">
-                    {item.points.map((point) => (
-                      <li key={point} className="flex items-center gap-3">
-                        <div className="shrink-0 w-5 h-5 rounded-full bg-[#8FE5C1]/30 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-emerald-600" strokeWidth={3} />
-                        </div>
-                        <span className="text-[13px] text-slate-600 leading-relaxed">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────────── DYNAMIC STRATEGIES ───────────── */}
-      <section className="relative py-20 sm:py-28 overflow-hidden bg-white border-t border-slate-100/80">
-        {/* Top centre glow */}
-        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-gradient-to-b from-[#007aec]/5 to-transparent blur-3xl" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #8FE5C120 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-14 sm:mb-20"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              {t('smartPricing.strategyEngine')}
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1]">
-              Dynamic{' '}
-              <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                {t('smartPricing.strategies')}
-              </span>
-            </h2>
-            <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              {t('smartPricing.strategiesSubtext')}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {strategies.map((s, i) => (
-              <motion.article
-                key={s.scenario}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className={`group relative ${glassCard} p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_14px_44px_rgba(0,122,236,0.13)] overflow-hidden`}
-              >
-                {/* Card gradient tint */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-60 rounded-2xl`}
-                />
-
-                <div className="relative">
-                  {/* Scenario tag */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className={`w-2 h-2 rounded-full ${s.dot} shrink-0`} />
-                    <span className="text-[10px] font-bold text-[#007aec] uppercase tracking-[0.12em]">
-                      {t('smartPricing.scenario')}
-                    </span>
-                  </div>
-
-                  <h3 className="text-[15px] font-semibold text-slate-800 mb-4 leading-snug">
-                    {s.scenario}
-                  </h3>
-
-                  <div className="space-y-3">
-                    {[
-                      { labelKey: 'action', value: s.action },
-                      { labelKey: 'result', value: s.result },
-                      { labelKey: 'example', value: s.example },
-                    ].map(({ labelKey, value }) => (
-                      <div key={labelKey}>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.08em]">
-                          {t(`smartPricing.${labelKey}`)}
-                        </span>
-                        <p className="text-[13px] text-slate-600 leading-relaxed mt-0.5">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom accent bar */}
-                <div className="absolute bottom-0 left-6 right-6 h-[2px] rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────────── REVENUE IMPACT ───────────── */}
-      <section className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-slate-50/80 to-white border-t border-slate-100/80">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-[#8FE5C1]/18 blur-[85px]" />
-          <div className="absolute bottom-0 left-0 w-[380px] h-[380px] rounded-full bg-[#007aec]/7 blur-[85px]" />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-14 sm:mb-20"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.1em] uppercase text-[#007aec] bg-[#007aec]/8 border border-[#007aec]/15 mb-5">
-              {t('smartPricing.revenueImpact')}
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.1] max-w-3xl mx-auto">
-              Measurable results that drive{' '}
-              <span className="bg-gradient-to-r from-[#007aec] to-[#8FE5C1] bg-clip-text text-transparent">
-                {t('smartPricing.profitability')}
-              </span>
-            </h2>
-            <p className="mt-4 max-w-xl mx-auto text-lg text-slate-500 leading-relaxed">
-              {t('smartPricing.revenueImpactSubtext')}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {revenueImpact.map((item, i) => (
-              <motion.div
-                key={item.title}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className={`group relative ${glassCard} p-8 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_52px_rgba(0,122,236,0.14)] overflow-hidden`}
-              >
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#007aec]/5 to-[#8FE5C1]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-                <div className="relative">
-                  {/* Icon */}
-                  <div
-                    className={`w-12 h-12 rounded-xl ${item.iconBg} flex items-center justify-center mx-auto mb-5`}
-                  >
-                    <StepIcon
-                      icon={item.icon}
-                      className={`w-6 h-6 ${item.iconColor}`}
-                      strokeWidth={1.75}
-                    />
-                  </div>
-
-                  {/* Big stat */}
-                  <p
-                    className={`text-3xl sm:text-4xl font-bold bg-gradient-to-r ${item.statColor} bg-clip-text text-transparent mb-1`}
-                  >
-                    {item.stat}
-                  </p>
-
-                  <h3 className="text-[15px] font-semibold text-slate-800 mt-2 mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{item.sub}</p>
-                </div>
-
-                {/* Bottom accent bar */}
-                <div className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </motion.div>
-            ))}
           </div>
 
-          {/* CTA strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.3 }}
-            className="mt-16 text-center"
-          >
-            <div className="relative inline-block">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#007aec]/15 to-[#8FE5C1]/15 blur-xl scale-105 -z-10" />
-              <div className="rounded-2xl flex flex-col items-center justify-center bg-white/80 backdrop-blur-2xl border border-white/95 shadow-[0_8px_48px_rgba(0,122,236,0.10)] px-10 py-8">
-                <div className="h-1 w-24  rounded-full bg-gradient-to-r from-[#007aec] to-[#8FE5C1] mx-auto mb-6" />
-                <p className="text-slate-700 text-lg font-medium mb-6 max-w-md">
-                  {t('smartPricing.ctaText')}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {factors.map((factor) => (
+              <div
+                key={factor.key}
+                className="bg-white rounded-xl border border-neutral-200 shadow-sm p-6 text-center"
+              >
+                <div className={`w-14 h-14 rounded-full ${factor.iconBg} flex items-center justify-center mx-auto mb-4`}>
+                  <FactorIcon icon={factor.icon} className={`w-7 h-7 ${factor.iconColor}`} strokeWidth={1.75} />
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900 mb-2">
+                  {factor.title}
+                </h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  {factor.desc}
                 </p>
-                <SecondaryButton href="/contact-us" label={t('smartPricing.ctaButton')} className="text-primary items-center justify-center" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Dynamic Strategies: left = 4 strategy cards, right = Revenue Impact card ── */}
+      <section className="py-16 sm:py-24 bg-white border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-8 text-left">
+            {t('smartPricing.dynamicStrategies')}
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left: 4 strategy cards with left stripe + icon + title + description */}
+            <div className="space-y-4">
+              {strategies.map((s) => (
+                <div
+                  key={s.key}
+                  className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden flex"
+                >
+                  <div className={`w-1 sm:w-1.5 shrink-0 ${s.stripeColor}`} aria-hidden />
+                  <div className="p-5 flex items-start gap-4 flex-1">
+                    <div className="w-9 h-9 shrink-0 rounded-lg bg-neutral-100 flex items-center justify-center">
+                      <FactorIcon icon={s.icon} className={`w-4 h-4 ${s.iconColor}`} strokeWidth={1.75} />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold text-neutral-900 mb-1">
+                        {s.title}
+                      </h3>
+                      <p className="text-sm text-neutral-600 leading-relaxed">
+                        {s.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: Revenue Impact — solid primary blue card with 3 stats */}
+            <div className="bg-primary rounded-xl p-8 sm:p-10 flex flex-col">
+              <h3 className="text-xl font-bold text-white mb-8">
+                {t('smartPricing.revenueImpact')}
+              </h3>
+              <div className="space-y-8">
+                {stats.map((item) => (
+                  <div key={item.titleKey}>
+                    <p className="text-3xl sm:text-4xl font-bold text-white leading-none mb-1">
+                      {item.stat}
+                    </p>
+                    <p className="text-base font-bold text-white mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-white/80 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-white/20">
+                <Link
+                  href="/contact-us"
+                  className="inline-flex items-center gap-2 text-white font-medium hover:underline"
+                >
+                  {t('smartPricing.ctaButton')}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2} />
+                </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
