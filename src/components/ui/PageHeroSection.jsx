@@ -11,8 +11,16 @@ import { ChevronRight } from 'lucide-react';
  * @param {string} [props.description] - Optional short description below the title
  * @param {string} [props.image] - Optional hero background image URL (full-width with overlay)
  * @param {string} [props.imageAlt] - Alt text for hero image when image is provided
+ * @param {React.ReactNode} [props.children] - Optional buttons or CTAs to render under description/title (e.g. <PageHeroSection><button>...</button></PageHeroSection>)
  */
-export function PageHeroSection({ breadcrumbs = [], title, description, image, imageAlt = '' }) {
+export function PageHeroSection({
+  breadcrumbs = [],
+  title,
+  description,
+  image,
+  imageAlt = '',
+  children,
+}) {
   const hasImage = Boolean(image);
 
   const content = (
@@ -69,6 +77,17 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
           {description}
         </p>
       )}
+      {children && (
+        <div
+          className={
+            hasImage
+              ? 'mt-6 flex flex-wrap justify-center gap-3'
+              : 'mt-5 flex flex-wrap justify-center gap-3'
+          }
+        >
+          {children}
+        </div>
+      )}
     </>
   );
 
@@ -83,7 +102,7 @@ export function PageHeroSection({ breadcrumbs = [], title, description, image, i
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-secondary/80" aria-hidden />
         </div>
-        <div className="relative z-10 w-full  mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <div className="relative z-10 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           {content}
         </div>
       </section>
