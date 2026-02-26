@@ -11,7 +11,7 @@ const HERO_IMAGE = 'https://images.unsplash.com/photo-1497366754035-f200968a6e72
 
 const contactInfoKeys = [
   { icon: Phone, labelKey: 'phone', value: '+49 176 41629153', subKey: 'callAnytime', href: 'tel:+4917641629153', iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
-  { icon: Mail, labelKey: 'email', value: 'info@roommery.io', subKey: 'sendEmail', href: 'mailto:info@roommery.io', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', hoverGrad: 'bg-primary/10' },
+  { icon: Mail, labelKey: 'email', value: 'info@roomery.io', subKey: 'sendEmail', href: 'mailto:info@roomery.io', iconBg: 'bg-[#8FE5C1]/25', iconColor: 'text-emerald-600', hoverGrad: 'bg-primary/10' },
   { icon: HeadphonesIcon, labelKey: 'support', valueKey: 'available24_7', subKey: 'weAreHere', href: null, iconBg: 'bg-primary/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
   { icon: Clock, labelKey: 'responseTime', valueKey: 'within24Hours', subKey: 'quickResponse', href: null, iconBg: 'bg-[#007aec]/10', iconColor: 'text-[#007aec]', hoverGrad: 'bg-primary/10' },
 ];
@@ -179,7 +179,7 @@ export default function ContactPage() {
               <div className="space-y-3">
                 {[
                   { icon: Phone, label: '+49 176 41629153', href: 'tel:+4917641629153' },
-                  { icon: Mail, label: 'info@roommery.io', href: 'mailto:info@roommery.io' },
+                  { icon: Mail, label: 'info@roomery.io', href: 'mailto:info@roomery.io' },
                 ].map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}
